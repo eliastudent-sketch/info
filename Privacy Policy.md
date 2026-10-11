@@ -1,18 +1,18 @@
 # Privacy Policy
 
-**Draft — effective date: October 11, 2026**
+**Effective date: October 11, 2026**
 
 This Privacy Policy describes how the Discord bot operated under the public
 name `buttercup_uwu` handles information when it is used in Discord servers,
 through commands, games, moderation tools, reminder features, and update
 notifications. It also explains what information is stored on the host system,
 what is processed by Discord and other third parties, and how users can contact
-operator for questions, requests, or concerns.
+the operator for questions, requests, or concerns.
 
-This document is intentionally written as a public, plain-language summary for
-an operator-managed bot that is not open-sourced and is run in a closed-source
-deployment. It should be checked against the actual bot deployment, enabled
-features, host configuration, and applicable local law before publication.
+This document is intended to provide a public, plain-language summary for an
+operator-managed bot that is not open-sourced and is run in a closed-source
+deployment. It should be reviewed against the actual bot deployment, enabled
+features, host configuration, and applicable local law.
 
 ## 1. Operator and contact details
 
@@ -74,10 +74,16 @@ server-specific features.
 
 ### 3.2 Update-notification campaign data
 
-The bot includes an update-notification prompt system that may post one
-announcement in a configured announcement channel and attempt to DM each unique
-human user found in the servers in which the bot account is present. The bot
-may track:
+The bot may include an update-notification prompt system that posts one
+announcement in a configured announcement channel and, where the deployment is
+configured to do so and where applicable Discord rules permit it, may attempt to
+send a DM to a user who has been clearly identified as eligible for the
+campaign. In all cases, the deployment should only contact a user when the
+relevant permission, opt-in, or other lawful basis required by Discord or local
+law is present. If no such basis exists, the bot should skip the user instead of
+sending a message.
+
+If the feature is enabled, the bot may track:
 
 - the user's Discord user ID
 - a DM channel ID and DM message ID for the opt-in prompt
@@ -92,6 +98,11 @@ These records are kept in a runtime file to resume after restart, reconcile
 reactions, and avoid sending the same user multiple DMs in the same campaign.
 The bot may also store the configured guild ID, channel ID, server IDs, and the
 announcement message ID used for the notification campaign.
+
+The bot should not assume that a public server announcement or a general
+availability of a Discord account creates a valid permission to send direct
+messages. If a deployment cannot confirm the required consent or policy basis,
+it should treat the user as not eligible and avoid direct contact.
 
 ### 3.3 Mention statistics
 
@@ -322,6 +333,13 @@ If a record is stored in the bot's runtime directory, the operator may delete it
 manually. If a copy exists in Discord or a backup or log system, that copy may
 remain subject to the relevant provider's policies and retention settings.
 
+The operator should review and respond to deletion requests in a manner consistent
+with applicable law, Discord policy, and the operational requirements of the
+host environment. Where a request is denied or partially fulfilled because of
+security, legal retention obligations, or an external provider's own rules, the
+operator should explain the reason as clearly as practicable and retain only what
+is necessary.
+
 The Operator may not be able to guarantee deletion of data already copied or
 stored elsewhere in the Discord ecosystem or host environment.
 
@@ -345,7 +363,7 @@ Discord channel. If a security or abuse issue needs to be reported, do so in a
 private channel or through the operator's designated secure contact method if
 one exists.
 
-This Privacy Policy is a draft and may require additional legal review before it
-is made public. It does not attempt to replace advice from a lawyer or the local
-legal requirements that apply to the operator and users in the jurisdiction where
-service is offered.
+This Privacy Policy is intended to describe the operator's current practices and
+should be reviewed against any additional legal requirements applicable to the
+operator and users in the jurisdiction where the service is offered. It does not
+replace advice from a lawyer where formal legal review is necessary.
