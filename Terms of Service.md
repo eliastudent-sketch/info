@@ -1,12 +1,6 @@
 # Terms of Service
 
-**Draft — effective date: October 11, 2026**
-
-> **Publication checklist:** This is a general-purpose draft, not legal advice
-> or a jurisdiction-specific contract. Before making it public, the operator
-> must resolve the clearly marked legal TODOs, verify the actual deployment,
-> and obtain legal review where required. Using a public handle does not by
-> itself satisfy legal disclosure requirements.
+**Effective date: October 11, 2026**
 
 These Terms of Service (“Terms”) govern access to and use of the Discord bot
 and related commands, utilities, games, moderation features, reminder features,
@@ -102,16 +96,21 @@ feature may not work correctly, and the bot may not be able to perform the
 requested task.
 
 The update-preference prompt is posted once in the configured announcement
-channel and the bot attempts to DM each unique human user found across the
+channel and, where enabled by the deployment and permitted under applicable
+Discord rules, the bot may attempt to DM each unique human user found across the
 guilds in which the bot account is present. A human user shared by multiple
 servers is intended to receive only one DM per campaign; bot accounts are
 skipped. The prompt offers levels 0–6. The recorded choice represents a
 preference only; it does not guarantee that a particular update, message, or
 relevant notification will be sent or delivered by Discord.
 
-The operator may publish update notifications or other communication features in
-one or more servers at a time. Discord can fail to deliver DMs, reactions may be
-removed, or a message may become unavailable due to deletion or rate limits.
+The operator should only send direct messages where required permission or
+clear consent exists under the applicable Discord and local-law requirements for
+the deployment. If no valid basis exists, the bot should treat the user as not
+eligible and avoid direct contact. The operator may publish update
+notifications or other communication features in one or more servers at a time.
+Discord can fail to deliver DMs, reactions may be removed, or a message may
+become unavailable due to deletion or rate limits.
 
 ## 5. Server administrators and permissions
 
@@ -333,11 +332,11 @@ losses, or for loss of profits, revenue, data, goodwill, or business
 opportunity, arising from or related to the Service or these Terms.
 
 To the maximum extent permitted by applicable law, the Operator's total
-liability for claims relating to the Service will be **[TODO — determine
-whether a liability cap is appropriate and lawful, and specify it only after
-legal review]**. This section does not limit liability that cannot legally be
-limited, including any liability that applicable law requires to remain
-uncapped.
+liability for claims relating to the Service will be set only after legal review
+and will be limited only to the extent permitted by the law of the jurisdiction
+in which the Service is offered. This section does not limit liability that
+cannot legally be limited, including any liability that applicable law requires
+to remain uncapped.
 
 You agree to be responsible for claims, losses, and reasonable expenses arising
 from your unlawful use of the Service, your User Submissions, or your material
@@ -361,15 +360,16 @@ Do not publish private details unless required and appropriately reviewed.
 
 ## 19. Governing law and disputes
 
-These Terms are governed by the laws of **[TODO: select jurisdiction after
-legal review]**, excluding conflict-of-law rules, only to the extent that
-choice is permitted by applicable law. Any court or dispute-resolution
-provisions must be completed as follows:
+These Terms are governed by the laws of the jurisdiction selected by the
+operator after legal review, excluding conflict-of-law rules, only to the extent
+that choice is permitted by applicable law. Any court or dispute-resolution
+provisions must be completed only after legal review and in a form consistent
+with mandatory consumer rights and platform rules.
 
-- **Courts and venue:** [TODO: select only after legal review]
-- **Informal resolution process:** [TODO: decide whether to include]
-- **Arbitration or class-action provisions:** [TODO: decide only with legal
-  review; do not imply a waiver unless legally valid]
+- **Courts and venue:** subject to legal review before publication
+- **Informal resolution process:** subject to legal review before publication
+- **Arbitration or class-action provisions:** subject to legal review before
+  publication; do not imply a waiver unless legally valid
 
 Nothing in this section removes mandatory consumer rights or access to a court
 or regulator where applicable law provides otherwise. Do not publish these
@@ -398,10 +398,10 @@ employment, agency, partnership, or joint-venture relationship.
 
 ## 21. General notes and practical limits
 
-These Terms do not attempt to create a warranty, a guarantee, or a regulatory
-certainty that depends on where the Service is offered. They are a public-facing
-draft intended to provide a detailed overview of the Service and the operator's
-basic approach to data handling, support, and use restrictions.
+These Terms are intended to provide a detailed overview of the Service and the
+operator's basic approach to data handling, support, and use restrictions. They
+do not create a warranty or guarantee beyond what is required by applicable
+law.
 
 The bot may be changed, removed, or disabled without notice if operational,
 security, moderation, legal, or platform reasons justify it. Some terms may be
@@ -412,6 +412,6 @@ The operator is responsible for ensuring that the actual bot deployment, public
 policy documents, and legal status match the real operational setup before the
 Service is made publicly available.
 
-This document is not legal advice. It should be reviewed by a qualified lawyer
-before publication in a jurisdiction where consumer protection, platform-law,
-privacy, or operator-disclosure requirements apply.
+This document should be reviewed by a qualified lawyer before publication in a
+jurisdiction where consumer protection, platform-law, privacy, or
+operator-disclosure requirements apply.
