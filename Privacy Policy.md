@@ -28,6 +28,15 @@ this notice. This contact information does not determine whether additional
 controller-identification details are legally required in a particular
 situation.
 
+The operator has not established that a Discord identity and support server
+alone satisfy every identity or contact-information rule that may apply. No
+legal name, geographical address, or privacy email is published here. If a
+law applicable to a user's situation requires additional details or another
+contact method, this notice does not claim that the current details satisfy
+that requirement. The operator should obtain jurisdiction-specific advice and
+publish any required details before continuing to offer the Service to users
+covered by that rule.
+
 ## 2. Information the bot handles
 
 The bot receives information through Discord when it is needed to provide a
@@ -139,8 +148,12 @@ The bot does not apply one expiry period to every record.
 Known retention behavior includes:
 
 - Developer telemetry: rolling 30 days.
-- Main bot log: rotates at approximately 5 MB per file and keeps two backup
-  files; this is size-based, not a fixed number of days.
+- Main bot log: from version 1.0.2, rotates daily and retains up to 29 rotated
+  files plus the active file (about 30 daily files). Rotation is triggered by
+  the next log write after midnight using the host's local time; downtime can
+  delay cleanup. Copies and backups outside the bot are not covered. Older
+  size-based log backups created by versions before 1.0.2 are not automatically
+  migrated or deleted by this change.
 - Mention statistics: cumulative counts are held in memory during the process;
   up to 50 recent events and a local summary are written for the developer
   monitor. The in-memory counts start again after a process restart. The
@@ -230,19 +243,41 @@ can guarantee absolute security. Users and server administrators should avoid
 sending highly sensitive information to the bot and should restrict access to
 moderation channels and computers containing runtime data.
 
-## 9. Changes and legal information
+## 9. Geographic scope and legal limits
+
+The bot is operated from Sweden and is technically available globally. That
+does not mean every country's laws have been reviewed or that the bot is
+certified for every jurisdiction. EU/EEA data protection requirements may
+apply because of the operator's establishment; other countries' laws can
+apply depending on their territorial rules, the service's activities, and
+other facts. The operator has not completed a country-by-country applicability
+analysis, a complete international-transfer assessment, or a full assessment
+of each processing purpose's legal basis.
+
+This notice is a description of known processing, not a promise that
+publishing it alone makes the processing lawful. Where applicable law gives
+you additional rights, those rights are not waived by this notice. If a
+mandatory local requirement conflicts with this notice, the mandatory rule
+controls. A public Discord contact may not meet a requirement for a legal
+identity, postal address, email address, local representative, or other
+contact information.
+
+## 10. Changes and legal information
 
 Material policy changes are published at the policy links and announced
 publicly in the configured announcement channel. The bot does not send
 policy-change DMs to members. A public announcement does not by itself
 constitute consent where consent is legally required.
 
-This notice is informed by the GDPR, Sweden's Data Protection Act, and
-published guidance from IMY. It does not certify compliance in every country
-or replace legal advice. Relevant primary sources:
+This notice is informed by the GDPR, Sweden's Data Protection Act, the
+Swedish Electronic Commerce Act, and published guidance from IMY. It does not
+certify compliance in every country or replace legal advice. The applicability
+of the Electronic Commerce Act's provider-information duties to this free
+service has not been determined. Relevant primary sources:
 
 - [GDPR, Regulation (EU) 2016/679](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
 - [Swedish Data Protection Act (2018:218)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2018218-med-kompletterande-bestammelser_sfs-2018-218/)
+- [Swedish Electronic Commerce Act (2002:562)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2002562-om-elektronisk-handel-och-andra_sfs-2002-562/)
 - [IMY: legal bases under GDPR](https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/rattslig-grund/)
 - [IMY: data-subject rights](https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/de-registrerades-rattigheter/)
 - [Discord Privacy Policy](https://discord.com/privacy)
