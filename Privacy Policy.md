@@ -71,7 +71,7 @@ feature in every server.
 | Games, polls, and interactive views | Player IDs, choices, scores, board/card state, poll options and votes, component interaction identifiers, and sometimes message identifiers | Keeps active game state in process memory; poll views time out after 24 hours and Tic-Tac-Toe views after 15 minutes; Discord messages may remain after the in-memory state ends |
 | Reminders and user-requested utilities | Reminder text, delay, and requester identity needed to schedule and attempt delivery | `/remind` accepts delays from 1 second to 7 days and holds its task in process memory; it sends the supplied text to the requester's Discord DM when due |
 | Music and media | YouTube URL, retrieved title/stream metadata, queue/current-track state, server and voice-channel context, and the requester's display name | Retrieves track metadata without downloading the media file, maintains a per-server in-memory queue, and streams audio through Discord voice |
-| Local AI feature | User prompt and generated reply, the Discord user ID used to associate in-memory conversation state, and the selected local model | Sends the latest prompt to the Ollama HTTP endpoint on the bot computer and stores prompt/reply pairs in process memory; accumulated history is not sent as context |
+| Local AI feature | User prompt and generated reply, the Discord user ID used to associate in-memory conversation state, and the selected local model | `/ai talk` sends the latest prompt to the Ollama HTTP endpoint on the bot computer and stores prompt/reply pairs in process memory; the owner-only `dev-ai-test` prefix command sends a one-off prompt to the same endpoint |
 | Server and member utilities | Server, channel, role, member, owner, and permission information returned by Discord | Produces the response requested by the user or administrator; local snapshots include bot/server names and IDs, counts, owner IDs, status, latency, and ban-export run count |
 | Mention monitoring | Mention author/target account IDs and names in cumulative local counters; up to 50 recent mention entries include display names, server name, bot flags, targets, and timestamps | Updates the local developer monitor when a message has mentions; it does not intentionally archive the full text of those messages |
 | Suggestions | Suggestion text (maximum 1,000 characters), submitter ID/name, server ID where applicable, submission time, and generated suggestion identifier | Saves the submission to the local suggestions file for the operator to review |
@@ -144,6 +144,14 @@ an in-memory list associated with the user's Discord ID until the process
 restarts. The local endpoint does not itself establish whether a separately
 configured Ollama model or proxy forwards prompts elsewhere, so users should
 not submit confidential information.
+
+The configured owner can also run the one-off `dev-ai-test` prefix command
+from a server channel or bot DM when local developer prefixes are enabled.
+Its prompt is sent to the same local Ollama endpoint and its response is
+posted back through Discord in the channel where the command was used. In a
+server, the command, prompt, and response can be visible to members who can
+read that channel; this command does not add the prompt or response to the
+per-user `/ai talk` memory.
 
 Music commands accept YouTube URLs. The bot uses `yt-dlp` to retrieve metadata
 and a stream URL without downloading the media file, then uses FFmpeg and
