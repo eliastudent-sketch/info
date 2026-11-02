@@ -36,6 +36,11 @@ features, permissions, and runtime behavior may vary depending on the
 deployment, the server configuration, the version of the bot, and the features
 that the operator chooses to enable.
 
+These Terms currently cover the Discord bot only. A separate Twitch bot is
+planned, but is not currently part of the Service and is not available under
+these Terms. If it is launched, its applicable terms and data practices will be
+published or updated before Twitch features are offered.
+
 Because the bot is closed-source and is operated by a single operator or small
 setup, it may not be available in every server or under every configuration. It
 is provided as a hosted or self-hosted bot running on infrastructure controlled
