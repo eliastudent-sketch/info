@@ -40,6 +40,12 @@ a user's command; some background tasks maintain service health or complete
 an explicitly approved release. The bot does not promise that every command
 will be enabled or available in every server.
 
+Some interactive state is temporary. Polls, games, reminders, AI conversation
+history, and music queues are not all stored durably. A restart can cancel a
+pending reminder and discard an active game, queue, or local AI history.
+Discord messages already posted for those features may remain even after the
+bot's in-memory state is gone.
+
 These Terms apply to the Discord service only. They do not govern Discord's
 own platform, a server administrator's separate rules, an optional provider's
 service, or a future Twitch bot. Each of those may be governed by separate
@@ -93,6 +99,12 @@ codes, government identifiers, health information, or other highly sensitive
 details in a command, suggestion, poll, reminder, or report unless the
 specific feature expressly requires and is appropriate for that information.
 
+Commands may create public or server-visible messages. In particular, `/poll`
+posts its question, options, and vote totals in Discord; a reminder is sent by
+DM when its timer completes; and `/ai talk` responds in the server channel.
+Do not treat a command or response as confidential merely because it was
+submitted as an interaction.
+
 You must not use the Service to:
 
 - send unsolicited or bulk messages, evade Discord rate limits, or automate
@@ -133,6 +145,14 @@ their information, limit access to moderation and export channels, use the
 least permissions that allow the chosen feature to work, and remove access
 when no longer needed. Administrators remain responsible for their own
 moderation decisions and for information they export, copy, or retain.
+
+Ban export files contain Discord account IDs and are written as ordinary
+local text files; the combined export also contains server IDs. Authorized
+administrators and owners must protect these files, use them only for a
+legitimate moderation purpose, and avoid sharing them with people who do not
+need access. Ban imports can cause moderation actions. Verify the source,
+server, IDs, and any supplied reasons before importing; the Operator does not
+endorse or guarantee the accuracy of an imported list.
 
 The Operator may change default permissions or disable a feature to address
 security, platform-policy, legal, or reliability concerns. No administrator
@@ -297,11 +317,24 @@ terms, copyright rules, and any restrictions that apply to the requested
 content. Media availability, accuracy, and playback are not guaranteed.
 
 If a local language-model utility is enabled, it connects to an Ollama
-instance on the Operator's computer. Availability depends on that local
-instance and the specific feature. Do not submit confidential or sensitive
-information to it. The bot's aggregate developer telemetry is not exported to
-an external AI service, but that statement does not change any processing by
-Discord or another provider used by an individual feature.
+instance on the Operator's computer at `localhost`. The current `/ai talk`
+implementation sends the latest prompt to that local endpoint, stores prompt
+and reply pairs in process memory associated with the user's account, and
+does not send the stored history as model context. A restart clears that
+in-memory history. Do not submit confidential or sensitive information. A
+separately configured Ollama model or proxy may have its own processing
+behavior, which is not established by the bot code. The bot's aggregate
+developer telemetry is not exported to an external AI service, but that
+statement does not change any processing by Discord or another provider used
+by an individual feature.
+
+The Windows launchers can start an optional local VRChat OSC sender. It sends
+compact, aggregate bot status, network, and seven-day command-health values
+to the local VRChat OSC chatbox receiver; it does not send account IDs,
+server names, mention-monitor details, or custom activity text. The text may
+be visible through VRChat's chatbox features. You can disable the sender by
+setting `BOT_ENABLE_VRC_OSC=0`. VRChat controls its own handling and display
+of OSC chatbox messages.
 
 ## 11. Availability, changes, and termination
 
@@ -348,6 +381,12 @@ record. Server administrators should verify information before using it for
 important moderation, account, or safety decisions. The Operator does not
 warrant that a third-party API, Discord permission, internet connection, host
 computer, or local runtime file will remain available or preserve data.
+
+The bot does not guarantee delivery of a reminder, a successful Discord DM,
+continuous music playback, recovery of an active poll/game/queue after
+restart, or completion of an import/export operation. Local bot health and
+telemetry shown through VRChat OSC are snapshots, not a real-time monitoring
+or incident-response service.
 
 ## 13. Liability
 
