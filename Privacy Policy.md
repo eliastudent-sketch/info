@@ -108,13 +108,15 @@ separate owner/admin-controlled tools, not automated decisions based on the
 aggregate telemetry database.
 
 The local VRChat OSC sender reads the bot heartbeat and this aggregate
-telemetry database. When enabled by a Windows launcher, it sends only the
+telemetry database. The standard Windows launchers enable it by default; it
+sends only the
 bot's status, version, uptime, heartbeat age, restart count, gateway latency,
 server/member totals, instance counts, and seven-day aggregate command/error/
 rate-limit figures to the local VRChat OSC chatbox receiver. It does not send
 guild names, account identifiers, mention-monitor data, or custom activity
 text. The chatbox output may be visible through VRChat's chatbox features; the
-sender does not publish the data to a separate analytics service.
+sender can be disabled with `BOT_ENABLE_VRC_OSC=0` and does not publish the
+data to a separate analytics service.
 
 ### Games, reminders, AI, and music
 
@@ -403,11 +405,12 @@ Other processing may occur when an optional feature is used:
 - The optional language-model feature connects to Ollama on the same
   computer (`localhost`); the bot's developer telemetry is not exported to an
   external AI service.
-- The Windows launcher may send aggregate bot status and telemetry to the
-  local VRChat OSC chatbox receiver. The status sender does not include
-  account identifiers, server names, mention-monitor details, or custom
-  activity text; chatbox visibility and any platform-side handling are
-  governed by VRChat's own features and policies.
+- The standard Windows launchers enable a sender that sends aggregate bot
+  status and telemetry to the local VRChat OSC chatbox receiver by default.
+  The sender does not include account identifiers, server names,
+  mention-monitor details, or custom activity text; chatbox visibility and
+  any platform-side handling are governed by VRChat's own features and
+  policies. It can be disabled with `BOT_ENABLE_VRC_OSC=0`.
 - If the separate user-join OAuth helper is run through a Cloudflare Quick
   Tunnel, Cloudflare proxies browser callback traffic to the operator's
   computer. The helper uses Discord's OAuth and API endpoints and handles the
