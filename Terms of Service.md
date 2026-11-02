@@ -104,7 +104,11 @@ posts its question, options, and vote totals in Discord; a reminder is sent by
 DM when its timer completes; `/ai talk` responds in the server channel; and
 the owner-only `dev-ai-test` prefix command posts its prompt response where
 that command was used. Prefix developer command responses in a server channel
-are visible there. Do not treat a command or response as confidential merely
+are visible there. Each slash developer command asks the configured owner to
+choose whether the response is private (Yes, visible only to the invoker in
+Discord) or public (No, visible in the channel); authorization-denial and
+framework-error responses remain private. Prefix commands do not support
+ephemeral responses. Do not treat a command or response as confidential merely
 because it was submitted as an interaction or by an authorized owner.
 
 You must not use the Service to:
