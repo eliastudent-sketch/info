@@ -2,443 +2,247 @@
 
 **Effective date: November 2, 2026**
 
-This Privacy Policy describes how the Discord bot operated under the public
-name `buttercup_uwu` handles information when it is used in Discord servers,
-through commands, games, moderation tools, reminder features, and update
-notifications. It also explains what information is stored on the host system,
-what is processed by Discord and other third parties, and how users can contact
-the operator for questions, requests, or concerns.
+This Privacy Policy explains how the Discord bot operated under the public
+name `buttercup_uwu` handles personal data. It covers the bot's commands,
+games, moderation and message-report tools, update notifications, OAuth helper,
+and local operational files. It does not cover Discord's own processing or
+services operated by other providers.
 
-This document is intended to provide a public, plain-language summary for an
-operator-managed bot that is not open-sourced and is run in a closed-source
-deployment. It should be reviewed against the actual bot deployment, enabled
-features, host configuration, and applicable local law.
+The bot is free, is operated by an individual based in Sweden, and currently
+runs on the operator's personal computer. It is available to users globally.
+A separate Twitch bot is planned but is not running and does not currently
+process Twitch data. This policy will be revised before Twitch features are
+offered.
 
-## 1. Operator and contact details
+## 1. Who operates the bot and how to contact them
+
+The operator and contact published for this service are:
 
 - **Public operator name:** `buttercup_uwu`
-- **Discord account:** [buttercup_uwu](https://discord.com/users/564486880763183111) (ID `564486880763183111`)
+- **Discord account:** [buttercup_uwu](https://discord.com/users/564486880763183111)
 - **Support and privacy requests:** [Discord support server](https://discord.gg/uP8FVT3yaZ)
 
-The bot is operated by the public operator identified above. The operator may
-be a person or organization using a public Discord identity rather than a
-formal legal name. This public disclosure does not waive any legal disclosure
-requirements that may apply in the operator's jurisdiction or where the bot is
-made available.
-
-**TODO — legal operator disclosures:** Confirm whether the laws that apply to
-the operator or users require a legal name, mailing address, business details,
-or other contact information in addition to this public Discord contact. Do not
-assume that using a pseudonym removes any such requirement. Obtain legal advice
-if uncertain; no private identity or address is supplied or implied here.
-
-## 2. Scope of this policy
-
-This policy applies to the bot's activities in connection with Discord servers,
-commands, DMs, reactions, automated announcements, and runtime files created by
-or for the bot. It does not replace Discord's own Privacy Policy, Terms of
-Service, or platform controls. The bot processes some data because Discord makes
-that information available to bot accounts in the course of carrying out a
-server feature, command, or automation.
-
-This policy currently covers the Discord bot only. A separate Twitch bot is
-planned but is not currently running or processing Twitch data. Before Twitch
-features are launched, this policy will be updated to describe their data
-handling, and any separate applicable terms will be published.
-
-Where Discord or a third-party service processes personal information separately,
-that party's own terms and policies apply.
-
-The bot may be configured differently in different deployments. The features
-that are actually enabled on a given host may materially affect what data is
-collected and retained. The operator should therefore review this policy and the
-host configuration whenever features are added or removed.
-
-## 3. Information the bot may process
-
-The bot uses Discord's API and therefore may interact with information that
-Discord provides to authorized bot accounts. Depending on how the bot is used
-and which features are enabled, the bot may process or store the following
-categories of information.
-
-### 3.1 Discord account and server information
-
-The bot may process:
-
-- Discord user IDs, usernames, display names, and account identifiers
-- Server IDs, server names, guild membership data, and related metadata
-- Channel IDs, channel names, category membership, and permissions context
-- Role IDs and role names where needed for bot functions and moderation
-- Message IDs, timestamps, authors, and message metadata involved in commands
-- Reaction data, including reaction emoji and counts used for polls or prompts
-- Server membership counts, ownership details, and operational server snapshots
-
-This information is generally needed for the bot to respond to commands,
-check permissions, inspect server state, and carry out member-specific or
-server-specific features.
-
-### 3.2 Update-notification campaign data
-
-The bot posts an update-notification prompt in the configured announcement
-channel. Users may choose a preference by reacting to that public message or by
-using `/updates preference`. The bot does not enumerate server members or send
-DMs to request update opt-in.
-
-If the feature is enabled, the bot may track:
-
-- the user's Discord user ID
-- the selected update-preference level (0 through 6)
-- whether multiple choices were detected and whether a conflict needs review
-- the source of the selection (for example, announcement, command, or conflict)
-
-These records are kept in a runtime file to preserve preferences after restart
-and reconcile announcement reactions. The bot may also store the configured
-guild ID, channel ID, server IDs, and announcement message ID used for the
-notification prompt. Historical records from earlier DM-based prompts may
-remain in that file, but the current campaign does not send or retry those DMs.
-
-The bot does not treat server membership or a public announcement as permission
-to send direct messages. Update release DMs are sent to users with a recorded
-preference matching that release and to the bot's configured owners for
-operational reporting, even if an owner has not selected a preference.
-
-### 3.3 Mention statistics
-
-The bot may produce mention statistics when a feature is enabled. This may
-include:
-
-- author IDs and mentioned-user IDs
-- display names or usernames involved in the event
-- server names and IDs
-- timestamps
-- counts of mention activity
-- up to 50 recent mention events, including the server name, author name, and
-  mentioned users' display names
-
-The mention-statistics handler does not deliberately store the full text of the
-message content, although the feature may still rely on Discord message metadata
-that Discord provides to the bot as part of the event. The bot also keeps
-cumulative per-user mention counts in memory for the current process and writes
-the summary to a local runtime file for the developer monitor. The in-memory
-counts start afresh when the bot process restarts; the runtime file is rewritten
-when the bot becomes ready.
-
-### 3.4 Operational and health data
-
-The bot may store operational and diagnostics information such as:
-
-- health or heartbeat records
-- bot uptime or activity counters
-- restart counts and timestamps
-- connected server counts
-- server snapshots, including names, IDs, owner IDs, and counts of members,
-  channels, and roles
-- operational notification events and failure records
-- bot runtime metadata necessary to troubleshoot startup or runtime issues
-- developer-command attempt records, which may include the time, user ID,
-  username, command path, server ID, and interaction ID; these are appended to
-  a local runtime log and reported to a configured Discord channel
-
-This information is relevant for bot monitoring, troubleshooting, and ensuring
-that a bot deployment remains operational.
-
-### 3.5 Moderation and blacklist data
-
-When moderation features are used, the bot may process:
-
-- user IDs targeted by a moderation command
-- reasons for a blacklist or ban action
-- export metadata related to banned users or moderation records
-- audit information needed to administer a blacklist or export feature
-
-If the periodic export task is enabled, the bot may write ban-related IDs to a
-host filesystem location. A user-invoked export may include additional fields,
-including ban reasons, depending on the feature and deployment.
-
-### 3.6 Commands and user-submitted content
-
-The bot may process information supplied through commands, including:
-
-- reminder text
-- URLs or links
-- game choices or poll options
-- custom descriptions or notes entered by users
-- moderation commands or parameters
-- command arguments needed to complete the requested action
-
-Some of this information is transient and may be held in memory while the bot
-process runs, while other values may be persisted in runtime state or logs
-depending on the feature and deployment.
-
-Suggestions submitted through the bot are persisted with their text (up to
-1,000 characters), submitter's Discord ID and username, server ID when
-applicable, and submission time. The bot does not currently provide an
-automatic expiry or user-facing deletion command for these records.
-
-### 3.7 Audit and runtime records
-
-The bot may create runtime records for reliability and operational purposes,
-including:
-
-- the state of current campaign prompts
-- deliverability status and owner metadata
-- pending tasks or reminders
-- runtime state files in the bot's runtime directory
-- generated export files and internal bot records
-
-The bot's current behavior does not define a universal deletion schedule for
-all runtime files. Files may be overwritten, retained until manually deleted,
-or retained by host backups, logs, or other operational systems outside the bot's
-own code.
-
-### 3.8 Local developer telemetry
-
-The bot records a limited set of aggregate diagnostics locally to help its
-operators identify errors and performance problems. These include command
-names, daily command success/error counts, command duration totals and maxima,
-error class names, and Discord rate-limit response counts. The telemetry does
-not include message or command argument content, Discord user IDs, server or
-guild names, or channel IDs.
-
-Telemetry is stored in the bot's runtime directory, retained for a rolling
-30-day period, and available only to configured bot owners through a private
-developer command or access to the host. It is not automatically sent to an
-analytics provider or to an AI assistant. If a user voluntarily shares a
-diagnostic summary for troubleshooting, that separate sharing is controlled by
-the user.
-
-## 4. Purposes of processing
-
-The bot processes information for the following general purposes:
-
-- to provide Discord commands, polls, games, and utility features
-- to fulfill reminder tasks and any scheduled or user-requested notification
-- to publish the update-preference prompt in its configured channel
-- to record update choices for later reconciliation after restart
-- to support server moderation and authorization workflows
-- to monitor the health and status of the bot and connected servers
-- to troubleshoot errors, service disruptions, or bot startup issues
-- to measure aggregate command reliability, command duration, and rate-limit
-  frequency for developer troubleshooting
-- to generate operational summaries and host-side audit records
-- to support the bot's functions where you or a server administrator explicitly
-  requested them
-
-The bot is not primarily a general-purpose data-collection service. It handles
-information to operate the features requested by users and administrators in the
-Discord environment.
-
-## 5. How information is used
-
-In practical terms, the bot may use the information described above to:
-
-- identify the user or server making a request
-- check whether a command is allowed in a given channel or guild
-- reconcile reactions to update-notification prompts after restart
-- maintain operational records that help the bot recover from failures
-- join or correlate entries across runtime files used by the bot
-- support security, abuse prevention, moderation, and operational integrity
-
-The bot does not claim to be a full-scale analytics service or a commercial
-data broker. Its use of information is tied to the functions it offers and the
-Discord environment in which it runs.
-
-## 6. Data minimization and retention
-
-The operator aims to process only data needed for the features being used, but
-this document does not guarantee that every deployment or host configuration uses
-strict minimization in the same way. The following practices describe the bot's
-current observed behavior and should be confirmed against the actual deployment.
-
-- Runtime state files are kept in the host's runtime directory for bot
-  operations such as update-preference tracking.
-- Local developer telemetry is retained for a rolling 30 days; it stores
-  aggregate command and rate-limit metrics without message content, user IDs,
-  guild names, or channel IDs.
-- Some reminder, game, and poll state are held in memory and may be lost if the
-  bot process restarts or stops.
-- Mention statistics include cumulative user counts for the current process and
-  up to 50 recent events. They are reset in memory on restart, but there is no
-  date-based expiry for the runtime file or copies in backups.
-- Suggestions, developer-command attempt records, update preference and release
-  delivery records, blacklist records, and some moderation exports may contain
-  identifiers or user-submitted text and have no automatic time-based deletion
-  schedule in the current bot code.
-- The main bot log rotates by file size and keeps a small number of backups;
-  this does not establish a fixed retention period.
-- Blacklist and export information may persist until a host admin deletes it or
-  the feature overwrites it.
-- Ban-export files, when enabled, may be stored on the host filesystem and may
-  be rewritten by later iterations of the export task.
-- Backups, logs, and host-side retention settings may extend the lifetime of a
-  file beyond the bot's internal state logic.
-
-There is no single automatic deletion schedule that applies to all runtime
-records across all deployments. A host operator, hosting provider, or server
-administrator may choose to rotate, archive, or remove files according to their
-own practices. In this deployment, several persistent files have no
-time-based expiry in the bot itself. Any request to access, correct, or delete
-bot-held information should be made to the operator through the contact methods
-in this policy.
-
-## 7. Sharing and third-party services
-
-The bot communicates with Discord to provide its features.
-
-The bot currently runs on the operator's personal computer rather than a
-configured cloud bot host. Discord processes API requests and account/server
-information as part of the bot's operation. Music features may request media
-metadata from YouTube using `yt-dlp`. If the separate OAuth helper is run with a
-Cloudflare Tunnel, Cloudflare proxies the browser callback traffic to the
-operator's computer. That helper temporarily handles the OAuth access token in
-memory, uses it to request the authorized server join, and does not save the
-token. The helper also handles the Discord user ID in memory to make the join
-request. Its authorization state expires after five minutes and is accepted
-only once. The helper does not print the user ID, access token, authorization
-code, state, or callback query string; its local request log contains only the
-HTTP method and path, and Discord response status.
-
-An optional local language-model feature sends its request to the Ollama
-service on the same computer (`localhost`), not to an external AI or analytics
-provider. The proposed public GitHub Pages site is not currently enabled. If it
-is enabled, GitHub states that Pages visitor IP addresses are logged for
-security; this policy must be updated to identify the active site and any other
-services before launch.
-
-The bot does not sell personal information as a core feature. However, the
-operator must verify the actual hosting and data-processing arrangements in any
-specific deployment. No external service guarantees that user data will never be
-accessed or retained by that service under its own policies.
-
-## 8. No sale of personal information and no general data brokerage
-
-The bot does not describe itself as a general-purpose data broker and does not
-advertise a feature that sells user identifiers or server data. The bot may,
-nonetheless, use data for operational, moderation, reminder, or communication
-features described in this policy.
-
-The operator should not represent that no third-party processing occurs in a
-particular deployment unless the actual host and connected services are checked.
-A bot hosted on a cloud provider or using external libraries may give that
-provider access to runtime files or logging data according to the provider's
-terms and the host's configuration.
-
-## 9. Your choices and rights
-
-Members may choose level 0 (no updates) or levels 1–6 in the update prompt and
-may change or remove their reaction. The bot may also reconcile conflicting
-choices when more than one selection is detected.
-
-To ask for access to, correction of, or deletion of bot-held information,
-contact the operator through the Discord support server. Requests may need to
-be assessed under applicable law, and some records may need to be retained for
-security, legal, or operational reasons. The operator has not yet established a
-formal request-verification or response-time procedure; this remains a
-publication blocker for a final legal notice.
-
-Where the GDPR applies, people may have rights including access, rectification,
-erasure, restriction, data portability, and objection, subject to the legal
-basis and applicable exceptions. A complaint may be made to the competent
-supervisory authority; for Sweden, this is the Swedish Authority for Privacy
-Protection (IMY) at [imy.se](https://www.imy.se/).
-
-Discord-held copies, such as messages or user profile data that belong to the Discord
-platform rather than the bot's own runtime files, must be addressed through
-Discord's own support or privacy channels.
-
-## 10. Security
-
-The operator should restrict access to bot tokens, credentials, runtime files,
-and host systems, and should use appropriate file permissions, secret management,
-updates, backups, and security controls. A bot that is connected to Discord
-servers should be treated as an internet-connected system and should be hosted
-in a manner consistent with security best practices.
-
-This section describes reasonable safeguards and operational practices, not a
-promise or certification that any specific deployment is secure. No
-internet-connected service can guarantee absolute security or permanent data
-integrity.
-
-## 11. Children and age requirements
-
-The bot is not intended to evade Discord's age requirements or any minimum-age
-rules that apply where a user lives. The bot does not currently ask for a date
-of birth or independently verify a user's age, and it has no separate
-bot-enforced age gate. Parents or guardians should review the bot and the
-Discord environment before allowing a child to interact with it.
-
-The operator is based in Sweden. Swedish law sets 13 as the age at which a
-child may personally consent to processing when an information-society service
-is offered directly to the child and consent is the applicable legal basis;
-this is not a universal minimum age for every service or processing activity.
-The actual legal basis and age obligations for this bot have not been
-determined, so this policy does not claim that its current setup satisfies
-children's-data requirements.
-
-## 12. Legal rights and jurisdiction-specific disclosures
-
-Rights and required notices vary by jurisdiction. As a result, a privacy policy
-for a public bot may need to include additional disclosures about controller
-identity, lawful basis for processing, retention periods, international transfers,
-request procedures, regulator contacts, or local representative information,
-depending on the laws that apply.
-
-Because the operator is based in Sweden and the bot is available globally,
-Swedish and EU data-protection rules may apply, and other jurisdictions may
-impose additional requirements. This document does not establish that the bot
-complies with every country's law.
-
-**TODO — jurisdiction-specific privacy terms:** Determine and add any legally
-required disclosures about the operator/controller identity, legal bases,
-retention periods, international transfers, privacy rights, regulator contacts,
-or local representative. Do not infer these details from the public handle or
-from this software description; obtain advice where necessary.
-
-## 13. Data deletion and limitations
-
-Because the bot stores some data in runtime files and may rely on Discord and
-third-party services, deletion is not always immediate or fully under the bot's
-control.
-
-If a record is stored in the bot's runtime directory, the operator may delete it
-manually. If a copy exists in Discord or a backup or log system, that copy may
-remain subject to the relevant provider's policies and retention settings.
-
-The operator should review and respond to deletion requests in a manner consistent
-with applicable law, Discord policy, and the operational requirements of the
-host environment. Where a request is denied or partially fulfilled because of
-security, legal retention obligations, or an external provider's own rules, the
-operator should explain the reason as clearly as practicable and retain only what
-is necessary.
-
-The Operator may not be able to guarantee deletion of data already copied or
-stored elsewhere in the Discord ecosystem or host environment.
-
-## 14. Changes to this policy
-
-The operator may update this Privacy Policy when the bot, its deployment,
-or its data practices change. The effective date at the top should be revised
-for material changes. The operator should also review this document when a host
-provider, feature set, moderation workflow, or retention practice changes.
-
-Material policy changes are announced publicly in the configured announcement
-channel and published at the policy links. Policy announcements are informational
-and do not by themselves establish consent or change the legal basis for
-processing. Where consent or another legally required notice is necessary, the
-operator must use the process required by applicable law; policy changes are not
-sent by DM.
-
-## 15. Contact and further questions
-
-For questions, privacy concerns, access requests, or operational issues,
-contact the operator through the [Discord support server](https://discord.gg/uP8FVT3yaZ).
-
-Do not send confidential or highly sensitive personal information through a public
-Discord channel. If a security or abuse issue needs to be reported, do so in a
-private channel or through the operator's designated secure contact method if
-one exists.
-
-This Privacy Policy is intended to describe the operator's current practices and
-should be reviewed against any additional legal requirements applicable to the
-operator and users in the jurisdiction where the service is offered. It does not
-replace advice from a lawyer where formal legal review is necessary.
+The operator is an individual based in Sweden and uses the public identity
+above. No separate legal name, postal address, or email address is published in
+this notice. This contact information does not determine whether additional
+controller-identification details are legally required in a particular
+situation.
+
+## 2. Information the bot handles
+
+The bot receives information through Discord when it is needed to provide a
+feature. Depending on the feature, this can include:
+
+- Discord user IDs, usernames, display names, and account-related details;
+- server, channel, and role IDs and names, membership and permission context,
+  member counts, and limited server snapshots;
+- command text, arguments, URLs, game or poll choices, reminder details, and
+  other information a user supplies to a feature;
+- message and reaction identifiers, authors, timestamps, and metadata;
+- moderation and blacklist IDs, reasons, audit records, and ban-export data;
+- update-notification preferences and delivery status; and
+- operational logs, health records, error details, and restart information.
+
+The bot has a message-content intent to support commands and mention
+statistics. The mention monitor records counts and up to 50 recent mention
+events with user and server names or IDs; it does not intentionally retain the
+full text of those monitored messages. Other commands, such as a user-invoked
+message report, do process message text as described below.
+
+### Suggestions
+
+A suggestion can be stored with its text (up to 1,000 characters), the
+submitter's Discord ID and username, the server ID when applicable, and the
+submission time. The current bot code does not automatically expire these
+records.
+
+### Developer command audit records
+
+The bot may append developer-command attempt records containing a timestamp,
+user ID and username, command path, server ID, and interaction ID to a local
+runtime log. The code does not set a time-based deletion period for that log.
+
+### Update preferences and release messages
+
+Users may choose update levels 0 through 6 in the public preference prompt or
+with `/updates preference`. The bot stores preference and campaign status,
+which may include user IDs, the selected level, conflict status, delivery
+attempts, and Discord message/channel identifiers. The current campaign does
+not DM members to ask them to opt in. Matching release notifications may be
+sent by DM to users with a recorded preference; configured bot owners may
+receive operational release messages regardless of preference. Old campaign
+records do not all have automatic expiry.
+
+### Member-submitted message reports
+
+When a member selects **Apps → Report message**, the bot sends an embed
+containing the selected message text (up to the embed's limit), a link to the
+message, the reported author's and reporting member's Discord IDs, and server
+and channel details. It sends the report to the private moderation channel
+configured by that server's administrator and makes a separate best-effort DM
+copy to each configured bot owner. The bot stores the configured destination
+channel ID per server in a local runtime file. It does not create a separate
+local archive of report contents. The report messages and DM copies are
+retained and controlled by Discord and the receiving accounts/channels.
+
+### Local developer telemetry
+
+The bot stores aggregate daily command counts, outcomes, duration summaries,
+error class names, and Discord rate-limit counts in a local SQLite database.
+This telemetry is retained for a rolling 30 days and is available only to
+configured bot owners through the developer metrics command or host access.
+It does not contain command arguments, message content, user IDs, guild names,
+or channel IDs, and is not sent to an external analytics service or AI
+provider.
+
+## 3. Why the information is used and intended legal bases
+
+The bot uses information to respond to commands, run requested features,
+enforce permissions, keep operational state after restarts, administer
+moderation workflows, send opted-in update messages, deliver member reports,
+prevent misuse, and diagnose errors or outages.
+
+The operator's current, provisional GDPR legal-basis assessment, where the
+GDPR applies, is:
+
+- **Service features requested by a user or server administrator:** Article
+  6(1)(b), to the extent processing is necessary to provide the requested
+  feature under these Terms.
+- **Optional release DMs:** Article 6(1)(a), consent represented by the user's
+  affirmative update preference. A user can change or withdraw that preference
+  through the prompt or `/updates preference`; withdrawal does not affect
+  processing already carried out.
+- **Security, abuse prevention, service reliability, and moderation reports:**
+  Article 6(1)(f), the operator's intended legitimate interests in keeping the
+  bot and participating communities operational and safer. This basis requires
+  an appropriate necessity and balancing assessment; it does not apply where
+  the individual's rights and interests override those interests.
+
+The operator does not claim that every possible feature or deployment has been
+independently assessed for lawful basis, and no complete legitimate-interests
+assessment is represented here. IMY guidance says the controller must identify
+and document the applicable basis before processing begins and inform people
+about it. This notice does not itself establish a lawful basis or certify that
+the provisional assessment is sufficient for every processing activity. The
+operator must confirm and document the basis for each purpose before relying on
+it, and review it before a feature's purpose or setup changes. Where a server
+administrator uses a report or moderation information for the server's own
+decisions, that administrator may have separate data-protection
+responsibilities.
+
+## 4. Where information is stored and how long it remains
+
+The main bot currently runs on the operator's personal computer. Runtime data
+is stored in local files or a local database under the bot's runtime directory.
+The bot does not apply one expiry period to every record.
+
+Known retention behavior includes:
+
+- Developer telemetry: rolling 30 days.
+- Main bot log: rotates at approximately 5 MB per file and keeps two backup
+  files; this is size-based, not a fixed number of days.
+- Mention statistics: cumulative counts are held in memory during the process;
+  up to 50 recent events and a local summary are written for the developer
+  monitor. The in-memory counts start again after a process restart. The
+  runtime file has no fixed time-based expiry.
+- Suggestions, developer-command attempt records, update preferences and
+  release-delivery records, blacklist data, moderation/export records, and
+  other operational files: the current code does not set a general time-based
+  deletion schedule. They may remain until overwritten or manually deleted.
+- Message-report destination settings: retained locally per server until an
+  administrator changes or disables them.
+- Temporary public OAuth authorization state: expires after five minutes and
+  can be used once. OAuth access tokens are handled in memory for the join
+  request and are not saved by the helper.
+
+Backups, Discord messages, owner DMs, and provider logs may persist beyond the
+bot's own runtime files. The operator should review local data periodically and
+delete information that is no longer needed, subject to security and legal
+requirements.
+
+## 5. Recipients and other services
+
+The bot uses the Discord API. Discord receives API requests and processes
+account, server, message, and interaction data under [Discord's Privacy
+Policy](https://discord.com/privacy) and [Terms of
+Service](https://discord.com/terms). Reports and update messages may be
+delivered as described above to the selected Discord channel or user.
+
+Other processing may occur when an optional feature is used:
+
+- The music feature may request media metadata from YouTube using `yt-dlp`.
+- The optional language-model feature connects to Ollama on the same
+  computer (`localhost`); the bot's developer telemetry is not exported to an
+  external AI service.
+- If the separate user-join OAuth helper is run through a Cloudflare Quick
+  Tunnel, Cloudflare proxies browser callback traffic to the operator's
+  computer. The helper uses Discord's OAuth and API endpoints, handles the
+  temporary access token and user ID in memory, and does not print the token,
+  authorization code, state, user ID, or callback query string.
+- The policy files are hosted in the public GitHub repository
+  `eliastudent-sketch/info`. No GitHub Pages website is currently deployed.
+
+These providers operate under their own terms and privacy practices. Their
+processing may occur in countries other than the user's or operator's country.
+The operator has not established a complete provider-by-provider map of
+international transfer mechanisms; provider-specific details should be
+checked in the relevant provider's privacy documentation.
+
+The operator does not sell personal data and does not use a third-party
+analytics service for developer telemetry.
+
+## 6. Your privacy rights and requests
+
+Where the GDPR applies, individuals may have rights to access, correct, erase,
+restrict, or receive certain personal data, and to object to processing based
+on legitimate interests. Where consent is the basis, it may be withdrawn at
+any time. These rights are subject to the GDPR's conditions and exceptions.
+You may also complain to the competent supervisory authority. In Sweden, that
+authority is the [Swedish Authority for Privacy Protection
+(IMY)](https://www.imy.se/).
+
+To make a request, contact the operator through the private support/privacy
+contact in the [Discord support server](https://discord.gg/uP8FVT3yaZ). Do not
+post personal or sensitive information in a public channel. The operator may
+ask for information reasonably needed to verify a request, and will respond
+within the period required by applicable law. Some data is held by Discord,
+server administrators, or other providers rather than in the bot's local
+files; requests about those copies may need to be made to the relevant
+provider or administrator.
+
+## 7. Children
+
+The bot does not request a date of birth or independently verify age, and it
+does not have a separate bot-level age gate. Users must meet Discord's current
+age requirements and any requirements that apply where they live.
+
+Swedish law sets age 13 for a child's own consent only where an
+information-society service is offered directly to that child and consent is
+the legal basis; this is not a universal minimum age for every service or
+processing purpose. The operator does not claim that this rule alone resolves
+all age or children's-data obligations for a globally accessible bot.
+
+## 8. Security
+
+The operator restricts bot credentials, runtime files, and host access and
+uses local storage and operational safeguards. No internet-connected service
+can guarantee absolute security. Users and server administrators should avoid
+sending highly sensitive information to the bot and should restrict access to
+moderation channels and computers containing runtime data.
+
+## 9. Changes and legal information
+
+Material policy changes are published at the policy links and announced
+publicly in the configured announcement channel. The bot does not send
+policy-change DMs to members. A public announcement does not by itself
+constitute consent where consent is legally required.
+
+This notice is informed by the GDPR, Sweden's Data Protection Act, and
+published guidance from IMY. It does not certify compliance in every country
+or replace legal advice. Relevant primary sources:
+
+- [GDPR, Regulation (EU) 2016/679](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [Swedish Data Protection Act (2018:218)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2018218-med-kompletterande-bestammelser_sfs-2018-218/)
+- [IMY: legal bases under GDPR](https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/rattslig-grund/)
+- [IMY: data-subject rights](https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/de-registrerades-rattigheter/)
+- [Discord Privacy Policy](https://discord.com/privacy)
