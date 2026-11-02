@@ -68,14 +68,16 @@ feature in every server.
 |---|---|---|
 | Slash commands and components | Discord account and interaction identifiers, command name, selected options, interaction time, server/channel context, and information needed to reply | Checks the request and permissions, runs the requested operation, and sends a response through Discord |
 | Prefix commands | Message identifier, author, message text needed to recognize the configured prefix and command, and server/channel context | Parses the command and runs permitted local developer or help actions; the bot does not intentionally store every ordinary message |
-| Games, polls, and interactive views | Player identifiers, choices, scores, game state, poll choices, component interaction identifiers, and sometimes message identifiers | Maintains a game or poll while it is active and edits or removes associated Discord messages as the feature requires |
-| Reminders and user-requested utilities | Reminder text/time or other options supplied for that utility, plus the requester identity needed to deliver the result | Performs the requested utility or schedules/delivers its result; feature-specific state may be in memory or a local runtime file |
-| Server and member utilities | Server, channel, role, member, owner, and permission information returned by Discord | Produces the response requested by the user or administrator; some limited server snapshots are written locally for the owner monitor |
-| Mention monitoring | Mentioning and mentioned account IDs/names and server context for up to 50 recent mention events, plus aggregate counts | Updates the local developer monitor; it is not intended to archive full text of the monitored messages |
+| Games, polls, and interactive views | Player IDs, choices, scores, board/card state, poll options and votes, component interaction identifiers, and sometimes message identifiers | Keeps active game state in process memory; poll views time out after 24 hours and Tic-Tac-Toe views after 15 minutes; Discord messages may remain after the in-memory state ends |
+| Reminders and user-requested utilities | Reminder text, delay, and requester identity needed to schedule and attempt delivery | `/remind` accepts delays from 1 second to 7 days and holds its task in process memory; it sends the supplied text to the requester's Discord DM when due |
+| Music and media | YouTube URL, retrieved title/stream metadata, queue/current-track state, server and voice-channel context, and the requester's display name | Retrieves track metadata without downloading the media file, maintains a per-server in-memory queue, and streams audio through Discord voice |
+| Local AI feature | User prompt and generated reply, the Discord user ID used to associate in-memory conversation state, and the selected local model | Sends the latest prompt to the Ollama HTTP endpoint on the bot computer and stores prompt/reply pairs in process memory; accumulated history is not sent as context |
+| Server and member utilities | Server, channel, role, member, owner, and permission information returned by Discord | Produces the response requested by the user or administrator; local snapshots include bot/server names and IDs, counts, owner IDs, status, latency, and ban-export run count |
+| Mention monitoring | Mention author/target account IDs and names in cumulative local counters; up to 50 recent mention entries include display names, server name, bot flags, targets, and timestamps | Updates the local developer monitor when a message has mentions; it does not intentionally archive the full text of those messages |
 | Suggestions | Suggestion text (maximum 1,000 characters), submitter ID/name, server ID where applicable, submission time, and generated suggestion identifier | Saves the submission to the local suggestions file for the operator to review |
 | Apps message reports | Selected message text (truncated to Discord embed limits), message link and ID, author and reporter IDs/names, timestamp, server and channel identifiers/names | Sends the report to the server's administrator-configured report channel and attempts a separate DM to configured bot owners |
 | Update preferences | User ID, level 0-6, choice source, status, timestamps, conflict information, and delivery/campaign identifiers | Persists preferences, calculates recipients for an explicitly approved release, and records the outcome of each delivery attempt |
-| Moderation and blacklist tools | Account IDs, reason text, relevant server identifiers, ban records or exports, command actor, and Discord audit context | Enforces owner/admin-authorized restrictions, imports/exports data, and performs the moderation operation selected by an authorized user |
+| Moderation and blacklist tools | Account IDs, reason text, relevant server identifiers, ban records or exports, command actor, and Discord audit context | Enforces owner/admin-authorized restrictions, imports/exports data, and performs the moderation operation selected by an authorized user; periodic local ban exports contain banned account IDs |
 | Developer commands | Command path, timestamp, actor ID/name, server ID and interaction ID may be written for developer-command audit records | Records attempted developer commands locally and may send an owner-only diagnostic event to the configured private Discord channel |
 | Developer metrics | Command names, success/error outcome, duration summaries, exception class names, and daily Discord rate-limit counts | Aggregates records locally for owner-only diagnostics; this database does not include user IDs, server names/IDs, channel IDs, message content, or command arguments |
 | OAuth join helper | OAuth authorization code/state during callback, temporary access token and Discord user ID during the request, and the requested server membership operation | Uses the user-approved `identify` and `guilds.join` scopes to request a Discord server join; the helper does not save the token and is separate from ordinary bot use |
@@ -104,6 +106,67 @@ The bot does not use telemetry to score, rank, profile, or make eligibility
 decisions about individual users. Moderation or blacklist commands are
 separate owner/admin-controlled tools, not automated decisions based on the
 aggregate telemetry database.
+
+The local VRChat OSC sender reads the bot heartbeat and this aggregate
+telemetry database. When enabled by a Windows launcher, it sends only the
+bot's status, version, uptime, heartbeat age, restart count, gateway latency,
+server/member totals, instance counts, and seven-day aggregate command/error/
+rate-limit figures to the local VRChat OSC chatbox receiver. It does not send
+guild names, account identifiers, mention-monitor data, or custom activity
+text. The chatbox output may be visible through VRChat's chatbox features; the
+sender does not publish the data to a separate analytics service.
+
+### Games, reminders, AI, and music
+
+Game and poll details are feature state, not developer telemetry. A poll
+stores its question, options, and user-ID-to-choice votes in memory and shows
+the choices and vote totals in its Discord message. Its interactive view
+times out after 24 hours. If INFO-level logging is enabled, poll vote log
+entries also contain the voter's Discord ID, selected option index, and
+whether the vote changed. Tic-Tac-Toe state is held in an interactive view
+that times out after 15 minutes. UNO games and music queues are held in
+process memory and are not restored after a bot restart; their Discord
+messages and any information already delivered to Discord are outside that
+memory lifetime.
+
+`/remind` keeps the supplied reminder text and a scheduled task in memory for
+the requested delay (1 second through 7 days), then attempts to DM that text
+to the requester. The reminder is not saved to a durable queue or runtime
+file. A process restart cancels pending tasks, and Discord may prevent or
+delay delivery of a DM.
+
+For `/ai talk`, the current code sends the latest user prompt to
+`http://localhost:11434/api/generate`; it does not send the stored conversation
+history as model context. Prompt/reply pairs are nevertheless accumulated in
+an in-memory list associated with the user's Discord ID until the process
+restarts. The local endpoint does not itself establish whether a separately
+configured Ollama model or proxy forwards prompts elsewhere, so users should
+not submit confidential information.
+
+Music commands accept YouTube URLs. The bot uses `yt-dlp` to retrieve metadata
+and a stream URL without downloading the media file, then uses FFmpeg and
+Discord voice for playback. Track title, webpage/stream URLs, requester
+display name, current track, queue, and voice-client state may be held in
+memory while the feature runs. YouTube and Discord process requests under
+their own terms and privacy disclosures.
+
+### Ban exports and local operational snapshots
+
+The bot attempts a ban export every five minutes. It writes one local
+`bans_<server-id>.txt` file per server containing banned Discord user IDs and
+a combined `bans_all.txt` file containing server-ID/user-ID pairs. Successful
+writes replace the corresponding file; a file for a server that is no longer
+connected, or whose export or write fails, may remain stale. These exports
+contain identifiers and are not part of aggregate developer telemetry.
+
+Authorized `/manage ban export` and owner-only `/dev ban export` operations
+also create files delivered through Discord; the owner export can include ban
+reasons. The owner-only `/dev ban import` command reads a supplied attachment
+to perform moderation actions. The bot does not intentionally keep the
+uploaded attachment as a local archive, but Discord may retain the attachment
+and messages under its own rules, and a recipient may save a downloaded
+export. Import/export users must have authority to handle the listed accounts
+and reasons.
 
 ### Suggestions
 
@@ -263,11 +326,25 @@ Known retention behavior includes:
   release-delivery records, blacklist data, moderation/export records, and
   other operational files: the current code does not set a general time-based
   deletion schedule. They may remain until overwritten or manually deleted.
+- Reminder tasks, game state, music queues, and AI prompt/reply pairs exist in
+  process memory rather than a durable database. Restarting the process loses
+  pending reminders and active game/music state and clears the in-memory AI
+  history.
+- Ban export files are attempted every five minutes and overwritten when a
+  replacement write succeeds. A per-server export can remain stale if that
+  server is no longer connected or its export/write fails; the code has no
+  separate age-based cleanup for those files.
 - Message-report destination settings: retained locally per server until an
   administrator changes or disables them.
 - Temporary public OAuth authorization state: expires after five minutes and
   can be used once. OAuth access tokens are handled in memory for the join
   request and are not saved by the helper.
+
+The OAuth helper's callback access log omits query values and does not
+intentionally print the authorization code, state, token, or user ID. However,
+a Discord HTTP error can print up to 1,000 characters of its response body to
+the local console, and other network exception text may also be printed.
+Protect those diagnostics and review them before sharing.
 
 The table below gives the current operational position in more detail. A
 statement that a file has no automatic expiry means the code does not currently
@@ -283,7 +360,13 @@ kept forever or a claim that indefinite storage is appropriate.
 | Developer-command attempt records | Appended to a local event file without code-level age-based deletion | Manual deletion or replacement of the runtime event file |
 | Update campaign and release state | Preferences, campaign membership/status, delivery attempts, and release queue/status can be retained without a general expiry period | Manual deletion or later campaign-state changes; deleting it may impair duplicate-prevention, progress reporting, or resumption of approved releases |
 | Blacklist and moderation/export data | Retained in local runtime or export files while needed for the moderation operation; the code does not provide one automatic expiry for every such file | Authorized removal, overwrite, or manual deletion; Discord may separately retain audit records |
-| Mention-monitor data and server snapshots | Local monitor files can be overwritten as new snapshots are produced, but the code does not enforce a fixed maximum age for every persisted record | Later writes may replace a snapshot; manual deletion or removal of the local file |
+| Periodic ban exports (`bans_<server-id>.txt`, `bans_all.txt`) | The bot attempts to overwrite them every five minutes; per-server files may become stale when an export fails or a server is removed, and no age-based cleanup is implemented | A later successful write replaces a file; otherwise manual deletion |
+| Reminder tasks | Held in process memory until delivery is attempted, cancellation, or process shutdown; not written to a durable store | Delivery attempt or process restart; a restart loses pending reminders |
+| Polls and games | Poll votes, Tic-Tac-Toe and UNO state are held in memory; poll views time out after 24 hours and Tic-Tac-Toe views after 15 minutes; UNO state has no separate durable retention | View timeout, game completion/cleanup, or process restart; Discord messages may remain |
+| AI prompt/reply history | Held in an in-memory per-user list for the process lifetime; the current model request includes only the latest prompt | Process restart; no persistent history file is written by this feature |
+| Music queues and active tracks | Track metadata and per-server playback/queue state are held in memory, not persisted as a durable queue | Queue completion, stop/disconnect, or process restart |
+| Mention-monitor data and server snapshots | Mention counters and up to 50 recent entries are written to a local monitor file while running; snapshots are rewritten during status updates. No fixed age-based cleanup is implemented for these files | Later writes replace the file; mention counters reset when the bot process starts; manual deletion |
+| Owner notification events | Guild-discovery and owner-membership events may be appended locally and relayed by the companion control panel to registered browser push subscriptions; the event file has no code-level age expiry | Manual deletion or rotation outside the bot code; push delivery is handled by the control panel and push providers |
 | Message-report channel setting | Stored per server until changed or disabled | Administrator removes or replaces the channel setting, or the operator deletes the local configuration |
 | OAuth callback state | One-time state is short lived and expires after five minutes | Automatic expiry or successful one-time use; access token is handled in memory and not saved by the helper |
 | Discord report posts, DMs, release posts, and audit records | Stored by Discord and controlled by Discord and the receiving account/server | Deletion by an authorized Discord user or Discord under its own rules; the bot does not control Discord's retention |
@@ -320,11 +403,19 @@ Other processing may occur when an optional feature is used:
 - The optional language-model feature connects to Ollama on the same
   computer (`localhost`); the bot's developer telemetry is not exported to an
   external AI service.
+- The Windows launcher may send aggregate bot status and telemetry to the
+  local VRChat OSC chatbox receiver. The status sender does not include
+  account identifiers, server names, mention-monitor details, or custom
+  activity text; chatbox visibility and any platform-side handling are
+  governed by VRChat's own features and policies.
 - If the separate user-join OAuth helper is run through a Cloudflare Quick
   Tunnel, Cloudflare proxies browser callback traffic to the operator's
-  computer. The helper uses Discord's OAuth and API endpoints, handles the
-  temporary access token and user ID in memory, and does not print the token,
-  authorization code, state, user ID, or callback query string.
+  computer. The helper uses Discord's OAuth and API endpoints and handles the
+  temporary access token and user ID in memory without saving them. Its
+  callback access log omits query values, but a Discord API error can cause
+  up to 1,000 characters of the response body to be printed to the local
+  console; other network exceptions may also be printed. Protect those local
+  diagnostics and do not assume error output can never contain personal data.
 - The policy files are hosted in the public GitHub repository
   `eliastudent-sketch/info`. No GitHub Pages website is currently deployed.
 
