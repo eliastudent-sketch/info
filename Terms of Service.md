@@ -101,9 +101,11 @@ specific feature expressly requires and is appropriate for that information.
 
 Commands may create public or server-visible messages. In particular, `/poll`
 posts its question, options, and vote totals in Discord; a reminder is sent by
-DM when its timer completes; and `/ai talk` responds in the server channel.
-Do not treat a command or response as confidential merely because it was
-submitted as an interaction.
+DM when its timer completes; `/ai talk` responds in the server channel; and
+the owner-only `dev-ai-test` prefix command posts its prompt response where
+that command was used. Prefix developer command responses in a server channel
+are visible there. Do not treat a command or response as confidential merely
+because it was submitted as an interaction or by an authorized owner.
 
 You must not use the Service to:
 
