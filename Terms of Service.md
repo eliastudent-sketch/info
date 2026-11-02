@@ -16,7 +16,8 @@ The Service is currently free and is operated from the Operator's personal
 computer. A separate Twitch bot is planned but is not part of the Service,
 is not available under these Terms, and is not currently processing Twitch
 data. If a Twitch service is launched, the applicable terms will be published
-or updated before it is offered.
+or updated before it is offered. These Terms describe Discord bot version
+1.0.2 as of November 2, 2026.
 
 ## 1. Agreement and scope
 
@@ -227,10 +228,19 @@ server](https://discord.gg/uP8FVT3yaZ) or the [public Discord
 account](https://discord.com/users/564486880763183111). Do not post passwords,
 tokens, or highly sensitive personal information in public channels.
 
-These Terms reflect the current free Discord bot and its published features.
+The Operator has not established that these Discord contact routes satisfy
+every applicable legal requirement for identifying a service provider or
+controller. No separate legal name, geographical address, or privacy email is
+published. If applicable law requires those details or a different notice,
+these Terms do not claim that the current contact information is sufficient.
+The Operator should obtain jurisdiction-specific advice and publish any
+required information before continuing to offer the Service to affected users.
+
+These Terms describe the current free Discord bot and its published features.
 They are based on the cited platform materials and Swedish/EU legal sources;
 they are not a legal opinion or a certification of compliance in every
-jurisdiction.
+jurisdiction. Laws outside Sweden may apply based on their own territorial
+rules, and mandatory rights are not waived by choosing Swedish law.
 
 ### Official references
 
@@ -238,5 +248,6 @@ jurisdiction.
 - [Discord Developer Terms of Service](https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service)
 - [Discord Developer Policy](https://discord.com/developers/docs/policies-and-agreements/developer-policy)
 - [Swedish Distance Contracts Act (2005:59)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2005-59-om-distansavtal-och-avtal-utanfor_sfs-2005-59/)
+- [Swedish Electronic Commerce Act (2002:562)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2002562-om-elektronisk-handel-och-andra_sfs-2002-562/)
 - [Swedish Data Protection Act (2018:218)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2018218-med-kompletterande-bestammelser_sfs-2018-218/)
 - [GDPR, Regulation (EU) 2016/679](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
