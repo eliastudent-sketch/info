@@ -63,6 +63,11 @@ availability, support, moderation systems, or policy decisions. If Discord's
 rules conflict with these Terms, you must follow Discord's rules when using
 Discord and the bot in connection with Discord.
 
+The Bot does not currently request a date of birth or independently verify
+users' ages, and it has no separate bot-enforced minimum age. You must not use
+the Service if you are below the minimum age allowed by Discord or applicable
+law where you live.
+
 ## 3. Definitions
 
 For convenience, the following terms are used in these Terms:
@@ -255,17 +260,39 @@ developer metrics do not include command arguments, message content, user IDs,
 guild names, or channel IDs, and are not automatically sent to an external
 analytics service or AI assistant.
 
-Files may be overwritten by feature updates, deleted by the operator, or remain
-until a host or deployment-specific cleanup process removes them. Hosting
-provider backups, logs, and Discord's own processing may cause copies of data to
-exist outside the bot's direct control. See the Privacy Policy for the fuller
-description of information handling, requests, and deployment-dependent details.
+Suggestions may persist with their text, submitter ID and username, server ID,
+and submission time. Developer-command attempt records may include user IDs,
+usernames, command paths, server IDs, interaction IDs, and timestamps. Mention
+statistics include cumulative counts for the current process and up to 50 recent
+events. Update-preference and release-delivery records may identify recipients
+and retain delivery status. These persistent records do not all have automatic
+time-based deletion in the current bot code.
+
+The bot currently runs on the Operator's personal computer. A separate OAuth
+helper, when run, asks a user to authorize `identify` and `guilds.join`, then
+uses the temporary access token to request that Discord add the consenting user
+to the configured server. The OAuth flow is optional and may fail if the user
+does not grant `guilds.join`, the bot is not in the destination server, or the
+bot lacks the required permission. Its temporary authorization state expires
+after five minutes and can be used once. The helper handles the access token
+and Discord user ID in memory only; it does not persist the token or print the
+user ID, token, authorization code, state, or callback query string. If run
+through Cloudflare Tunnel, that service also handles the callback traffic. No
+permanent GitHub Pages site is deployed; the temporary landing page is available
+only while the helper and host computer are online.
+
+Files may be overwritten, deleted by the Operator, or remain until a host or
+deployment-specific cleanup process removes them. Copies in backups, logs,
+Discord, or third-party services may remain outside the bot's direct control.
+See the Privacy Policy for the fuller description of information handling,
+requests, and deployment-dependent details.
 
 ## 12. Intellectual property
 
 The Operator or its licensors retain rights in the Service software, branding,
 and materials they provide, subject to third-party rights and licenses. The
 bot is closed-source: these Terms do not provide or license its source code.
+No public software license is granted for the bot's source code.
 They grant you a limited, revocable, non-exclusive right to use the Service
 through Discord for its intended purposes, subject to these Terms. They do not
 transfer ownership or authorize you to copy, redistribute, sell, or create a
