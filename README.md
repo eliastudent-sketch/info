@@ -109,11 +109,10 @@ to Discord controls and user settings. Discord can fail or delay delivery,
 reactions may be removed, or a message may become unavailable due to deletion
 or rate limits.
 
-Material changes to these Terms or the Privacy Policy may be announced in the
-configured public announcement channel and sent by DM to users who opted into
-matching bot update notifications. The bot does not send policy-change DMs to
-every server member or every account it can identify. Users who have not opted
-in should consult the published policy links for changes.
+Material changes to these Terms or the Privacy Policy are announced publicly
+through the configured policy announcement channel and published at the policy
+links. The bot does not send policy-change DMs, including to update subscribers.
+Users should consult the published policy links for changes.
 
 ## 5. Server administrators and permissions
 
@@ -221,9 +220,10 @@ viewed as operational aids, not guaranteed communication guarantees. Discord can
 prevent or delay delivery, and message or reaction data may change if users
 delete messages or remove reactions.
 
-Material policy changes may be posted publicly and privately messaged to users
-who opted into matching update categories. The Service does not send unsolicited
-policy-change DMs to all users in its servers.
+Material policy changes are posted publicly in the configured announcement
+channel and published at the policy links. The Service does not send
+policy-change DMs to users, whether or not they opted into feature-update
+notifications.
 
 ## 10. Music, media, and external content
 
