@@ -328,13 +328,13 @@ developer telemetry is not exported to an external AI service, but that
 statement does not change any processing by Discord or another provider used
 by an individual feature.
 
-The Windows launchers can start an optional local VRChat OSC sender. It sends
-compact, aggregate bot status, network, and seven-day command-health values
-to the local VRChat OSC chatbox receiver; it does not send account IDs,
-server names, mention-monitor details, or custom activity text. The text may
-be visible through VRChat's chatbox features. You can disable the sender by
-setting `BOT_ENABLE_VRC_OSC=0`. VRChat controls its own handling and display
-of OSC chatbox messages.
+The standard Windows launchers enable the local VRChat OSC sender by default.
+It sends compact, aggregate bot status, network, and seven-day command-health
+values to the local VRChat OSC chatbox receiver; it does not send account
+IDs, server names, mention-monitor details, or custom activity text. The text
+may be visible through VRChat's chatbox features. You can disable the sender
+by setting `BOT_ENABLE_VRC_OSC=0`. VRChat controls its own handling and
+display of OSC chatbox messages.
 
 ## 11. Availability, changes, and termination
 
