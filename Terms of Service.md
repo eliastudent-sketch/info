@@ -2,461 +2,241 @@
 
 **Effective date: November 2, 2026**
 
-These Terms of Service (“Terms”) govern access to and use of the Discord bot
-and related commands, utilities, games, moderation features, reminder features,
-notification workflows, and operational functions (collectively, the
-“Service”). The Service is operated under the public name **`buttercup_uwu`**
-(“Operator,” “we,” “us,” or “our”).
+These Terms govern your use of the free Discord bot operated under the public
+name `buttercup_uwu` (“Operator,” “we,” or “us”). The bot offers commands,
+games, utilities, moderation-related features, reminders, update notifications,
+and other functions made available through Discord (the “Service”).
 
 **Operator contact:** [buttercup_uwu](https://discord.com/users/564486880763183111)
-(Discord account ID `564486880763183111`); [Discord support server](https://discord.gg/uP8FVT3yaZ).
+and the [Discord support server](https://discord.gg/uP8FVT3yaZ). The Operator
+is an individual based in Sweden. No separate legal name, postal address, or
+email address is published in these Terms.
 
-**TODO — required operator disclosures:** Confirm whether applicable law
-requires publishing a legal name, business identity, mailing address, or other
-formal legal-notice contact in addition to these public Discord details. Do not
-assume the public handle replaces a legally required identity or address. Obtain
-professional advice where needed; no private identity or address is supplied
-or implied here.
+The Service is currently free and is operated from the Operator's personal
+computer. A separate Twitch bot is planned but is not part of the Service,
+is not available under these Terms, and is not currently processing Twitch
+data. If a Twitch service is launched, the applicable terms will be published
+or updated before it is offered.
 
-By inviting, accessing, or using the Service, you agree to these Terms. If you
-do not agree, do not use the Service and ask a server administrator to remove
-it from the server. If you use the Service on behalf of an organization or
-server, you represent that you are authorized to accept these Terms on its
-behalf.
+## 1. Agreement and scope
 
-“You” means the individual using the Service and, where applicable, the
-organization or server on whose behalf that individual acts.
+These Terms apply when you interact with the Service or use it in a server you
+administer. If you use the Service for an organization or server, you confirm
+that you are authorized to act for it. Server administrators may set additional
+server rules, but those rules do not change these Terms or Discord's terms.
 
-## 1. Purpose and scope
+If you do not accept these Terms, do not use the Service and ask a server
+administrator to remove or disable it. The Service's features and availability
+may differ by bot version, server configuration, permissions, and host.
 
-The Service is a Discord bot designed to support server operations, utilities,
-reminders, games, member announcements, and other automation within the
-Discord environment where the bot is installed. The command set, enabled
-features, permissions, and runtime behavior may vary depending on the
-deployment, the server configuration, the version of the bot, and the features
-that the operator chooses to enable.
+## 2. Eligibility and platform rules
 
-These Terms currently cover the Discord bot only. A separate Twitch bot is
-planned, but is not currently part of the Service and is not available under
-these Terms. If it is launched, its applicable terms and data practices will be
-published or updated before Twitch features are offered.
+You must be permitted to use Discord and the Service under Discord's current
+age requirements and the laws applicable to you. The bot does not ask for your
+date of birth or independently verify your age.
 
-Because the bot is closed-source and is operated by a single operator or small
-setup, it may not be available in every server or under every configuration. It
-is provided as a hosted or self-hosted bot running on infrastructure controlled
-by the operator or a hosting provider. Availability and supported commands may
-therefore change over time.
+Your use of Discord remains subject to [Discord's Terms of
+Service](https://discord.com/terms), [Community
+Guidelines](https://discord.com/guidelines), and other applicable Discord
+policies. When using Discord's developer platform, the Operator must also
+comply with the [Discord Developer Terms](https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service)
+and [Developer Policy](https://discord.com/developers/docs/policies-and-agreements/developer-policy).
+Those agreements govern the relationship with Discord and are separate from
+these Terms.
 
-We may add, modify, suspend, or discontinue features, commands, or campaign
-workflows in whole or in part. We may place technical limits, impose maintenance
-periods, or disable a command if it is no longer supported, misconfigured, or
-unsafe to operate. We are not promising permanent availability or any specific
-feature timeline.
+## 3. Using the Service
 
-## 2. Eligibility and Discord requirements
+You may use the Service only for lawful purposes and in accordance with these
+Terms and Discord's rules. You must not:
 
-You may use the Service only if you are allowed to use Discord and the Service
-under the laws and rules applicable to you. The Service is not intended to
-evade Discord's minimum-age requirements or any age limitations that apply to
-the user or server. Do not use the Service if your Discord account is restricted,
-blocked, suspended, or otherwise ineligible to do so.
+- use the Service to harass, threaten, defraud, or unlawfully target another
+  person;
+- attempt to access another person's account, private data, or server without
+  authorization;
+- interfere with the Service, evade rate limits or access controls, or use it
+  to distribute malware or spam;
+- use a command or moderation feature without the permissions or authority it
+  requires; or
+- use the Service in a way that violates applicable law or another person's
+  rights.
 
-Your use of Discord remains subject to Discord's terms, community guidelines,
-privacy policy, and other applicable platform rules. Discord is a separate
-service. The Operator does not control Discord's platform, accounts, API,
-availability, support, moderation systems, or policy decisions. If Discord's
-rules conflict with these Terms, you must follow Discord's rules when using
-Discord and the bot in connection with Discord.
+The Service is not an emergency service and must not be relied on as the only
+means of urgent communication, critical recordkeeping, or safety monitoring.
 
-The Bot does not currently request a date of birth or independently verify
-users' ages, and it has no separate bot-enforced minimum age. You must not use
-the Service if you are below the minimum age allowed by Discord or applicable
-law where you live.
+## 4. Server administrators and permissions
 
-## 3. Definitions
-
-For convenience, the following terms are used in these Terms:
-
-- “Bot” means the Discord bot service described in these Terms.
-- “Command” means a Discord message, slash command, interaction, or automation
-  that the bot executes in response to a user or server action.
-- “Feature” means any bot capability, workflow, game, reminder, moderation
-  action, or notification system made available by the bot.
-- “User Submission” means anything you provide to the bot, including text,
-  links, options, files, prompts, or other data entered through a command or
-  interactive feature.
-- “Runtime State” means data stored in the bot's local files or memory to keep
-  track of campaigns, reminders, or operational state.
-- “Third-Party Service” means a platform, library, media service, hosting
-  provider, or external source used in connection with the Service.
-
-## 4. Description of the Service and how it operates
-
-The Service may include Discord commands and utility features for games,
-server checks, reminders, poll-like interactions, moderation workflows,
-notification prompts, health reporting, and bot maintenance tasks. The exact
-features available to any server depend on the bot version, server configuration,
-permissions, privileges, and host environment.
-
-The bot may also process server and member data to identify who is eligible for
-commands, reminder deliveries, or update prompts. Some features may require
-Administrator or other Discord permissions, privileged intents, or access to
-specific channels. If those permissions are missing, revoked, or changed, the
-feature may not work correctly, and the bot may not be able to perform the
-requested task.
-
-The update-preference prompt is posted in the configured announcement channel.
-Users may choose levels 0–6 by reacting to that message or using
-`/updates preference`. The bot does not enumerate server members or send DMs
-requesting update opt-in. A recorded choice represents a preference only; it
-does not guarantee that a particular update or notification will be sent or
-delivered by Discord.
-
-Release notifications may be sent by DM to users whose recorded preference
-matches the release category. Configured bot owners may also receive operational
-release notifications regardless of their preference. Delivery remains subject
-to Discord controls and user settings. Discord can fail or delay delivery,
-reactions may be removed, or a message may become unavailable due to deletion
-or rate limits.
-
-Material changes to these Terms or the Privacy Policy are announced publicly
-through the configured policy announcement channel and published at the policy
-links. The bot does not send policy-change DMs, including to update subscribers.
-Users should consult the published policy links for changes.
-
-## 5. Server administrators and permissions
-
-Server administrators decide whether to add or remove the bot and which
-permissions it receives. Administrators are responsible for reviewing the
-requested permissions, configuring the server, informing their members as
-appropriate, and ensuring their use of the Service complies with Discord's
+The server administrator decides whether to add the bot, which permissions to
+grant, and which features to enable. Administrators are responsible for
+configuring permissions and channels, controlling access to private moderation
+channels, and ensuring their own use of the Service complies with Discord's
 rules and applicable law.
 
-Some commands require Discord permissions, enabled privileged intents, or
-access to a particular channel. The Service may not work if those permissions
-or intents are absent, revoked, or changed. Do not grant permissions beyond
-those reasonably needed for the features you choose to use.
+Some features need Discord permissions, privileged intents, or access to a
+specific channel. They may stop working if those permissions are removed or
+changed. Grant only the permissions needed for the features you choose to use.
+The Operator does not control server roles, channel visibility, or what
+administrators do with information delivered to their server.
 
-Where a command performs moderation or another consequential action, the user
-invoking it is responsible for having authority and checking the target,
-parameters, and surrounding context. The Operator does not make server moderation
-or administrative decisions on behalf of server owners or administrators.
+## 5. Moderation and message reports
 
-Users holding Administrator or other privileged roles are expected to exercise
-those privileges responsibly and in accordance with discord's rules, server
-policies, and local law.
+The **Apps → Report message** context command lets a member submit a selected
+message for review. The report includes message text and a link, the reported
+author and reporter identifiers, and server/channel context. It is sent to the
+private report channel configured by a server administrator and copied to the
+configured bot owners by Discord DM. Reports are best-effort; the bot cannot
+guarantee delivery or that a recipient will review or act on one.
 
-## 6. Acceptable use
+An administrator can configure or disable the report destination using
+`/manage admin report-channel`. Administrators should restrict the channel to
+moderators who need access. Do not submit a report unless you are comfortable
+sharing the selected message with those recipients. Do not use the feature for
+emergencies; contact the relevant server moderators or authorities directly.
 
-You agree not to use the Service:
+Other moderation commands may affect a member's access to a server or bot.
+Those actions are subject to the permissions of the person invoking the
+command and Discord's audit and moderation systems. The Operator does not
+guarantee that a moderation action is correct or reversible.
 
-- to break the law, violate another person’s rights, or violate Discord’s
-  terms, policies, or community guidelines
-- to threaten, harass, stalk, defraud, impersonate, exploit, or unlawfully
-  discriminate against another person
-- to distribute malware, phishing attempts, spam, scams, or content intended to
-  compromise accounts, systems, or networks
-- to attempt unauthorized access to the Service, its hosting environment,
-  another user's data, Discord accounts, or connected systems
-- to interfere with or disrupt the Service, Discord, or other users, including
-  by evading rate limits or deliberately causing excessive load
-- to bypass permissions, blacklists, moderation controls, or safeguards, or to
-  use a command for a purpose it was not designed to perform
-- to use media, export, or moderation features in a way that infringes
-  intellectual-property, privacy, or other rights
-- to scrape, collect, or disclose personal information through the Service
-  without an appropriate legal basis and any required notice or consent
+## 6. Update preferences and messages
 
-We may investigate suspected abuse, preserve relevant operational information,
-restrict access, or report relevant activity to Discord or an appropriate
-authority where this is reasonably necessary and lawful. The operator may also
-disable or limit a feature if it is being used in a way that creates risk,
-misuse, or operational problems.
+The bot may publish a public update-preference prompt. Users may choose levels
+0 through 6 or change their preference using `/updates preference`. The bot
+does not enumerate all members or send DMs asking them to opt in. Release
+messages may be sent by DM to users whose saved preference matches the release;
+configured bot owners may also receive operational release messages.
 
-## 7. User submissions and command results
+Discord may block or delay messages, and the Operator cannot guarantee
+delivery or that a user has read a message. Policy changes are announced
+publicly in the configured channel and published at the policy links. The bot
+does not send policy-change DMs to members. A public announcement does not
+replace consent or another notice where the law requires it.
 
-You remain responsible for the text, URLs, options, files, prompts, and other
-material you submit through commands or features (“User Submissions”). You
-represent that you have the rights and authority needed to submit them and to
-authorize the Service to process them to perform the requested feature.
+## 7. User content
 
-You authorize the Operator to receive, transmit, and process User Submissions
-only as reasonably needed to carry out the feature you request, maintain the
-security of the Service, and satisfy any legal obligation that applies. This
-does not transfer ownership of your content to the Operator or grant a general
-right to publish or reuse it. User Submissions are also subject to processing
-by Discord and, where applicable, a third-party service used to fulfill the
-command.
+You retain rights you hold in content you submit. You authorize the Operator
+to receive, process, and transmit that content only as reasonably necessary
+to provide the feature you requested, operate the Service, maintain security,
+and comply with law. For example, a message report is shared with its
+configured recipients as described above. Discord and other providers may
+process content under their own terms and policies.
 
-Command results may be incomplete, delayed, inaccurate, or misleading,
-particularly where they depend on Discord permissions, cached server data,
-external media sources, network responses, or bot health. Verify important
-information and review consequential actions before relying on them. A command
-result is not legal, financial, or operational advice unless the operator
-explicitly states otherwise.
+Do not submit content you are not entitled to share, or content that is
+unlawful, abusive, or malicious. The Operator does not claim ownership of your
+content.
 
-## 8. Moderation, enforcement, and exports
+## 8. Privacy
 
-Moderation commands are tools for authorized server staff; they do not replace
-careful judgment, server policies, or applicable legal obligations. You are
-responsible for confirming the correct server, member, duration, and action
-before running a moderation command.
+The [Privacy Policy](./Privacy%20Policy.md) explains what information the bot
+handles, its purposes and intended legal bases, storage and known retention,
+recipients, and how to make a privacy request. Discord separately processes
+data under Discord's own policies.
 
-The Service may provide features for server moderation, bans, blacklists,
-exports, or related operational summaries. Those features should be used only by
-users with actual authority to do so. Exported ban or other server data may
-contain personal information. You are responsible for limiting access to
-exports, using them only for a legitimate purpose, securely storing them, and
-deleting them when no longer needed. The Operator does not guarantee that an
-export is complete, current, or suitable for compliance or recordkeeping
-purposes.
+The bot stores some information in local runtime files on the Operator's
+computer. Not all records have automatic deletion periods. The Privacy Policy
+describes the specific retention behavior the current code establishes.
 
-When the periodic export task is enabled, the bot may write ban-user IDs to
-files on its host filesystem. Exports invoked by users may include additional
-fields such as ban reasons. The availability and retention of those files depend
-on the deployment and the host environment.
+## 9. Intellectual property
 
-## 9. Reminders, announcements, and scheduled behavior
+The Operator retains rights in the bot software, branding, and materials,
+subject to third-party rights and licenses. The source code is not offered
+under a public software license; these Terms do not grant permission to copy,
+redistribute, sell, or modify it. This does not restrict rights that applicable
+law or a third-party license grants.
 
-Reminder text is used to provide the reminder requested by the user. A pending
-reminder is held in the running bot process and sent to the requesting user by
-Discord DM when due. It is not a durable scheduled service and may be lost if
-the bot process restarts, crashes, or stops before delivery. Delivery also
-depends on Discord's ability to send the DM.
+Discord, Twitch, YouTube, and other third-party names and services belong to
+their respective owners. No affiliation or endorsement is implied. Twitch is
+mentioned only as a planned, separate service and is not included in the
+current Service.
 
-The bot may also post announcements or update prompts in a configured channel
-and may track which user has chosen an update level. These campaigns are best
-viewed as operational aids, not guaranteed communication guarantees. Discord can
-prevent or delay delivery, and message or reaction data may change if users
-delete messages or remove reactions.
+## 10. Third-party services
 
-Material policy changes are posted publicly in the configured announcement
-channel and published at the policy links. The Service does not send
-policy-change DMs to users, whether or not they opted into feature-update
-notifications.
+The Service depends on Discord and may use third-party libraries or optional
+services, such as YouTube for media metadata, Ollama running locally for an
+optional language-model feature, or Cloudflare Tunnel for an optional OAuth
+helper. Those providers have separate terms, privacy practices, security
+controls, and availability. Your use of a provider's service is also governed
+by its terms.
 
-## 10. Music, media, and external content
+The optional user-join OAuth helper asks a consenting user to authorize
+`identify` and `guilds.join`, then asks Discord to add that user to the
+configured server. It is not required to use the main bot. Its temporary
+authorization state expires after five minutes and is single-use; the helper
+handles an access token in memory and does not save it.
 
-Music-related or media-related functions may retrieve metadata or stream
-information from YouTube or other sources using third-party tools. You must have
-the necessary rights and permissions to access or use such media. The Operator
-does not host, endorse, control, or guarantee the availability, legality,
-accuracy, or quality of third-party content.
+## 11. Availability, changes, and termination
 
-You are responsible for following the terms of the relevant media source or
-service and all applicable copyright and intellectual-property laws. The bot
-should not be used to bypass platform restrictions, license restrictions, or the
-rights of content owners.
-
-## 11. Privacy and data handling
-
-Use of the Service is also subject to the [Privacy Policy](./Privacy%20Policy.md).
-The bot may process Discord IDs, names, membership information, command
-parameters, update-prompt delivery and reaction records, mention statistics,
-operational health/server data, blacklist records, and ban-export information
-when the relevant feature is used. Reminder text and some interactive
-game/poll state are held in memory while the process runs. Runtime and export
-files are stored on the host filesystem; no general automatic deletion schedule
-is specified for them.
-
-The bot also stores aggregate command counts, command duration summaries,
-error class names, and rate-limit counts locally for up to 30 days. These
-developer metrics do not include command arguments, message content, user IDs,
-guild names, or channel IDs, and are not automatically sent to an external
-analytics service or AI assistant.
-
-Suggestions may persist with their text, submitter ID and username, server ID,
-and submission time. Developer-command attempt records may include user IDs,
-usernames, command paths, server IDs, interaction IDs, and timestamps. Mention
-statistics include cumulative counts for the current process and up to 50 recent
-events. Update-preference and release-delivery records may identify recipients
-and retain delivery status. These persistent records do not all have automatic
-time-based deletion in the current bot code.
-
-The bot currently runs on the Operator's personal computer. A separate OAuth
-helper, when run, asks a user to authorize `identify` and `guilds.join`, then
-uses the temporary access token to request that Discord add the consenting user
-to the configured server. The OAuth flow is optional and may fail if the user
-does not grant `guilds.join`, the bot is not in the destination server, or the
-bot lacks the required permission. Its temporary authorization state expires
-after five minutes and can be used once. The helper handles the access token
-and Discord user ID in memory only; it does not persist the token or print the
-user ID, token, authorization code, state, or callback query string. If run
-through Cloudflare Tunnel, that service also handles the callback traffic. No
-permanent GitHub Pages site is deployed; the temporary landing page is available
-only while the helper and host computer are online.
-
-Files may be overwritten, deleted by the Operator, or remain until a host or
-deployment-specific cleanup process removes them. Copies in backups, logs,
-Discord, or third-party services may remain outside the bot's direct control.
-See the Privacy Policy for the fuller description of information handling,
-requests, and deployment-dependent details.
-
-## 12. Intellectual property
-
-The Operator or its licensors retain rights in the Service software, branding,
-and materials they provide, subject to third-party rights and licenses. The
-bot is closed-source: these Terms do not provide or license its source code.
-No public software license is granted for the bot's source code.
-They grant you a limited, revocable, non-exclusive right to use the Service
-through Discord for its intended purposes, subject to these Terms. They do not
-transfer ownership or authorize you to copy, redistribute, sell, or create a
-competing service from Operator materials except as permitted by law or an
-applicable license.
-
-Discord, YouTube, and other third-party names, marks, services, and content
-belong to their respective owners. No endorsement or affiliation is implied
-unless the Operator expressly states otherwise.
-
-If you believe material handled by the Service infringes your rights, contact
-the Operator using the details in Section 18 with the material, its location,
-the rights claimed, and a reliable way to contact you. The Operator may remove
-or restrict material and may forward a notice to the relevant service provider.
-
-## 13. Third-party services and links
-
-The Service relies on Discord and may use external libraries, hosting
-providers, media sources, or other services. Those third parties have their own
-terms, privacy policies, security practices, and availability. The Operator does
-not control them and is not responsible for their acts or omissions to the
-extent permitted by applicable law.
-
-When a third-party service is used to fulfill a command, that service may
-receive information needed to complete the request. Your use of the Service is
-therefore also subject to the rules of those third-party services as relevant to
-the feature in use.
-
-## 14. Availability, reliability, and support
-
-The Service is provided over the internet and may be affected by outages,
-maintenance, rate limits, API changes, bugs, network failures, or other events
-beyond the Operator’s control. We do not promise uninterrupted, secure,
-error-free operation, or the recovery of deleted messages, data files, or event
-history.
-
-Do not use the Service as the sole means of emergency communication, critical
-recordkeeping, access control, or any task where a failure could reasonably
-cause serious harm. Report suspected security issues or service abuse privately
-to the Operator rather than exploiting them or disclosing another person’s
-information.
-
-Support is provided at the Operator’s discretion. Unless separately agreed in
-writing, the Operator does not guarantee a response time or ongoing support.
-
-## 15. Suspension and termination
+The Service is provided over the internet and may be interrupted by
+maintenance, computer or network outages, Discord or provider outages, rate
+limits, software defects, or changes to Discord's APIs. The Operator may add,
+change, suspend, or discontinue a feature, or suspend access where reasonably
+needed for security, abuse prevention, legal compliance, Discord requirements,
+or maintenance.
 
 You may stop using the Service at any time. A server administrator may remove
-the bot from a server. The Operator may suspend or terminate access, disable a
-feature, or remove the bot where reasonably necessary for maintenance, security,
-abuse prevention, legal compliance, Discord requirements, or a material
-violation of these Terms.
+or disable it. The Operator may suspend or end the Service without guaranteeing
+that all runtime data can be recovered or immediately removed. Data handling
+after removal is described in the Privacy Policy.
 
-Upon termination, your permission to use the Service ends. Provisions that by
-their nature should continue—including responsibility for prior conduct,
-intellectual-property terms, disclaimers, liability limits, and dispute terms—
-continue to the extent permitted by law. Data may remain in backups or
-operational records for the periods described in the Privacy Policy.
+## 12. Disclaimers
 
-## 16. Disclaimers
+The Service is provided without a promise of uninterrupted availability or
+that it will be error-free or meet a particular need. To the extent permitted
+by law, the Operator disclaims implied warranties that may otherwise apply to
+a free service. Nothing in these Terms excludes a warranty, remedy, or right
+that cannot lawfully be excluded or limited.
 
-To the maximum extent permitted by applicable law, the Service and its
-features are provided “as is” and “as available.” The Operator disclaims
-implied warranties and conditions, including merchantability, fitness for a
-particular purpose, title, and non-infringement, to the extent those
-disclaimers are legally permitted.
+## 13. Liability
 
-Nothing in these Terms excludes a warranty, right, or remedy that cannot
-lawfully be excluded or limited. If mandatory law grants you additional rights,
-those rights apply.
+Nothing in these Terms limits liability where a limitation is prohibited by
+applicable law, including mandatory consumer protections. To the extent
+permitted by law, the Operator is not responsible for indirect or consequential
+losses that could not reasonably be expected from use of a free, non-critical
+Discord bot, or for acts of Discord, server administrators, or other
+independent providers. This section does not limit responsibility for the
+Operator's own conduct where the law does not permit that limitation.
 
-## 17. Liability and indemnity
+## 14. Governing law and disputes
 
-To the maximum extent permitted by applicable law, the Operator will not be
-liable for indirect, incidental, special, consequential, exemplary, or punitive
-losses, or for loss of profits, revenue, data, goodwill, or business
-opportunity, arising from or related to the Service or these Terms.
+Swedish law governs these Terms, without displacing mandatory consumer
+protections or rules that require another law or forum to apply. A consumer
+may retain any mandatory right to bring a claim before a court or authority
+available under the law that applies to that consumer. Nothing here requires
+arbitration or waives a right that cannot legally be waived.
 
-To the maximum extent permitted by applicable law, the Operator's total
-liability for claims relating to the Service will be set only after legal review
-and will be limited only to the extent permitted by the law of the jurisdiction
-in which the Service is offered. This section does not limit liability that
-cannot legally be limited, including any liability that applicable law requires
-to remain uncapped.
+If you have a concern, contact the Operator using the support channel below
+before bringing a non-urgent dispute. This does not prevent you from contacting
+a regulator or exercising a legal right.
 
-You agree to be responsible for claims, losses, and reasonable expenses arising
-from your unlawful use of the Service, your User Submissions, or your material
-breach of these Terms, to the extent caused by your conduct and to the extent
-permitted by applicable law. Do not publish this indemnity without review of
-its scope and enforceability in the relevant jurisdictions.
+## 15. Changes and general terms
 
-## 18. Contact and notices
+The Operator may revise these Terms to reflect changes to the Service or law.
+The effective date will be updated for material changes, which will be
+published at the policy links and announced publicly in the configured
+announcement channel. Continued use is not treated as consent where applicable
+law requires a different form of notice or agreement. If you do not agree to
+a change, stop using the Service and ask a server administrator to remove it.
 
-- **Public operator name:** `buttercup_uwu`
-- **Discord account:** [buttercup_uwu](https://discord.com/users/564486880763183111) (ID `564486880763183111`)
-- **Support and privacy requests:** [Discord support server](https://discord.gg/uP8FVT3yaZ)
+If a provision is unenforceable, it will be applied only to the extent allowed
+by law; the remaining provisions continue to apply. A failure to enforce a
+provision is not a waiver of it.
 
-Do not send confidential or highly sensitive information through a public
-Discord channel or a public server chat. If a matter requires private handling,
-use the designated private contact method supplied by the operator, if any.
+## 16. Contact
 
-**TODO — legal notices:** Confirm whether a separate legal name, mailing
-address, or other formal notice method is required where the Service is offered.
-Do not publish private details unless required and appropriately reviewed.
+For service questions, contact the Operator through the [Discord support
+server](https://discord.gg/uP8FVT3yaZ) or the [public Discord
+account](https://discord.com/users/564486880763183111). Do not post passwords,
+tokens, or highly sensitive personal information in public channels.
 
-## 19. Governing law and disputes
+These Terms reflect the current free Discord bot and its published features.
+They are based on the cited platform materials and Swedish/EU legal sources;
+they are not a legal opinion or a certification of compliance in every
+jurisdiction.
 
-These Terms are governed by the laws of the jurisdiction selected by the
-operator after legal review, excluding conflict-of-law rules, only to the extent
-that choice is permitted by applicable law. Any court or dispute-resolution
-provisions must be completed only after legal review and in a form consistent
-with mandatory consumer rights and platform rules.
+### Official references
 
-- **Courts and venue:** subject to legal review before publication
-- **Informal resolution process:** subject to legal review before publication
-- **Arbitration or class-action provisions:** subject to legal review before
-  publication; do not imply a waiver unless legally valid
-
-Nothing in this section removes mandatory consumer rights or access to a court
-or regulator where applicable law provides otherwise. Do not publish these
-Terms until the jurisdiction and any required venue or dispute provisions have
-been reviewed. Preserve all mandatory consumer rights.
-
-## 20. Changes to the Terms
-
-We may revise these Terms when the Service, the operator's practices, or legal
-requirements change. The effective date at the top will be updated for material
-revisions. Where the law requires notice or consent, we will follow those
-requirements. Continued use after revised Terms take effect signifies
-action only to the extent permitted by applicable law.
-
-If a provision is held invalid or unenforceable, it will be limited or removed
-only as necessary, and the remaining provisions will continue to apply to the
-extent permitted by law. A failure to enforce a provision is not a waiver of
-the right to enforce it later. You may not transfer your rights or obligations
-under these Terms without the Operator’s consent; the Operator may transfer
-these Terms as part of a lawful reorganization or transfer of the Service,
-subject to applicable law.
-
-These Terms and any additional written terms expressly agreed by you and the
-Operator form the agreement concerning the Service. They do not create an
-employment, agency, partnership, or joint-venture relationship.
-
-## 21. General notes and practical limits
-
-These Terms are intended to provide a detailed overview of the Service and the
-operator's basic approach to data handling, support, and use restrictions. They
-do not create a warranty or guarantee beyond what is required by applicable
-law.
-
-The bot may be changed, removed, or disabled without notice if operational,
-security, moderation, legal, or platform reasons justify it. Some terms may be
-added or amended by separate written notices when a feature or deployment
-requires it.
-
-The operator is responsible for ensuring that the actual bot deployment, public
-policy documents, and legal status match the real operational setup before the
-Service is made publicly available.
-
-This document should be reviewed by a qualified lawyer before publication in a
-jurisdiction where consumer protection, platform-law, privacy, or
-operator-disclosure requirements apply.
+- [Discord Terms of Service](https://discord.com/terms)
+- [Discord Developer Terms of Service](https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service)
+- [Discord Developer Policy](https://discord.com/developers/docs/policies-and-agreements/developer-policy)
+- [Swedish Distance Contracts Act (2005:59)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2005-59-om-distansavtal-och-avtal-utanfor_sfs-2005-59/)
+- [Swedish Data Protection Act (2018:218)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2018218-med-kompletterande-bestammelser_sfs-2018-218/)
+- [GDPR, Regulation (EU) 2016/679](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
