@@ -41,6 +41,11 @@ Service, or platform controls. The bot processes some data because Discord makes
 that information available to bot accounts in the course of carrying out a
 server feature, command, or automation.
 
+This policy currently covers the Discord bot only. A separate Twitch bot is
+planned but is not currently running or processing Twitch data. Before Twitch
+features are launched, this policy will be updated to describe their data
+handling, and any separate applicable terms will be published.
+
 Where Discord or a third-party service processes personal information separately,
 that party's own terms and policies apply.
 
