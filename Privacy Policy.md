@@ -107,11 +107,16 @@ include:
 - server names and IDs
 - timestamps
 - counts of mention activity
-- a recent summary or rolling record of mention events
+- up to 50 recent mention events, including the server name, author name, and
+  mentioned users' display names
 
 The mention-statistics handler does not deliberately store the full text of the
 message content, although the feature may still rely on Discord message metadata
-that Discord provides to the bot as part of the event.
+that Discord provides to the bot as part of the event. The bot also keeps
+cumulative per-user mention counts in memory for the current process and writes
+the summary to a local runtime file for the developer monitor. The in-memory
+counts start afresh when the bot process restarts; the runtime file is rewritten
+when the bot becomes ready.
 
 ### 3.4 Operational and health data
 
@@ -125,6 +130,9 @@ The bot may store operational and diagnostics information such as:
   channels, and roles
 - operational notification events and failure records
 - bot runtime metadata necessary to troubleshoot startup or runtime issues
+- developer-command attempt records, which may include the time, user ID,
+  username, command path, server ID, and interaction ID; these are appended to
+  a local runtime log and reported to a configured Discord channel
 
 This information is relevant for bot monitoring, troubleshooting, and ensuring
 that a bot deployment remains operational.
@@ -156,6 +164,11 @@ The bot may process information supplied through commands, including:
 Some of this information is transient and may be held in memory while the bot
 process runs, while other values may be persisted in runtime state or logs
 depending on the feature and deployment.
+
+Suggestions submitted through the bot are persisted with their text (up to
+1,000 characters), submitter's Discord ID and username, server ID when
+applicable, and submission time. The bot does not currently provide an
+automatic expiry or user-facing deletion command for these records.
 
 ### 3.7 Audit and runtime records
 
@@ -239,8 +252,15 @@ current observed behavior and should be confirmed against the actual deployment.
   guild names, or channel IDs.
 - Some reminder, game, and poll state are held in memory and may be lost if the
   bot process restarts or stops.
-- Mention statistics are retained in a limited rolling summary and may not store
-  full message text.
+- Mention statistics include cumulative user counts for the current process and
+  up to 50 recent events. They are reset in memory on restart, but there is no
+  date-based expiry for the runtime file or copies in backups.
+- Suggestions, developer-command attempt records, update preference and release
+  delivery records, blacklist records, and some moderation exports may contain
+  identifiers or user-submitted text and have no automatic time-based deletion
+  schedule in the current bot code.
+- The main bot log rotates by file size and keeps a small number of backups;
+  this does not establish a fixed retention period.
 - Blacklist and export information may persist until a host admin deletes it or
   the feature overwrites it.
 - Ban-export files, when enabled, may be stored on the host filesystem and may
@@ -251,21 +271,34 @@ current observed behavior and should be confirmed against the actual deployment.
 There is no single automatic deletion schedule that applies to all runtime
 records across all deployments. A host operator, hosting provider, or server
 administrator may choose to rotate, archive, or remove files according to their
-own practices. Any request to delete or correct bot-held information should be
-made to the operator through the contact methods in this policy.
+own practices. In this deployment, several persistent files have no
+time-based expiry in the bot itself. Any request to access, correct, or delete
+bot-held information should be made to the operator through the contact methods
+in this policy.
 
 ## 7. Sharing and third-party services
 
 The bot communicates with Discord to provide its features.
 
-The bot may also interact with third-party services or libraries in specific
-features, including media metadata fetching through tools such as `yt-dlp`.
-Specific hosting providers and external service operators depend on the
-deployment and are not identified in this policy as a universal statement about
-all installations.
+The bot currently runs on the operator's personal computer rather than a
+configured cloud bot host. Discord processes API requests and account/server
+information as part of the bot's operation. Music features may request media
+metadata from YouTube using `yt-dlp`. If the separate OAuth helper is run with a
+Cloudflare Tunnel, Cloudflare proxies the browser callback traffic to the
+operator's computer. That helper temporarily handles the OAuth access token in
+memory, uses it to request the authorized server join, and does not save the
+token. The helper also handles the Discord user ID in memory to make the join
+request. Its authorization state expires after five minutes and is accepted
+only once. The helper does not print the user ID, access token, authorization
+code, state, or callback query string; its local request log contains only the
+HTTP method and path, and Discord response status.
 
-The operator should identify relevant hosting providers and any external
-services before publication of a public policy if the deployment depends on them.
+An optional local language-model feature sends its request to the Ollama
+service on the same computer (`localhost`), not to an external AI or analytics
+provider. The proposed public GitHub Pages site is not currently enabled. If it
+is enabled, GitHub states that Pages visitor IP addresses are logged for
+security; this policy must be updated to identify the active site and any other
+services before launch.
 
 The bot does not sell personal information as a core feature. However, the
 operator must verify the actual hosting and data-processing arrangements in any
@@ -291,10 +324,18 @@ Members may choose level 0 (no updates) or levels 1–6 in the update prompt and
 may change or remove their reaction. The bot may also reconcile conflicting
 choices when more than one selection is detected.
 
-To ask about, correct, or request deletion of bot-held information, contact the
-operator through the public Discord support server. Requests may need to be
-assessed under applicable law, and some records may need to be retained for
-security, legal, or operational reasons.
+To ask for access to, correction of, or deletion of bot-held information,
+contact the operator through the Discord support server. Requests may need to
+be assessed under applicable law, and some records may need to be retained for
+security, legal, or operational reasons. The operator has not yet established a
+formal request-verification or response-time procedure; this remains a
+publication blocker for a final legal notice.
+
+Where the GDPR applies, people may have rights including access, rectification,
+erasure, restriction, data portability, and objection, subject to the legal
+basis and applicable exceptions. A complaint may be made to the competent
+supervisory authority; for Sweden, this is the Swedish Authority for Privacy
+Protection (IMY) at [imy.se](https://www.imy.se/).
 
 Discord-held copies, such as messages or user profile data that belong to the Discord
 platform rather than the bot's own runtime files, must be addressed through
@@ -316,11 +357,18 @@ integrity.
 ## 11. Children and age requirements
 
 The bot is not intended to evade Discord's age requirements or any minimum-age
-rules that apply where a user lives. Parents or guardians should review the bot
-and the Discord environment before allowing a child to interact with it.
+rules that apply where a user lives. The bot does not currently ask for a date
+of birth or independently verify a user's age, and it has no separate
+bot-enforced age gate. Parents or guardians should review the bot and the
+Discord environment before allowing a child to interact with it.
 
-The operator should comply with applicable age restrictions and local laws where
-the service is offered.
+The operator is based in Sweden. Swedish law sets 13 as the age at which a
+child may personally consent to processing when an information-society service
+is offered directly to the child and consent is the applicable legal basis;
+this is not a universal minimum age for every service or processing activity.
+The actual legal basis and age obligations for this bot have not been
+determined, so this policy does not claim that its current setup satisfies
+children's-data requirements.
 
 ## 12. Legal rights and jurisdiction-specific disclosures
 
@@ -329,6 +377,11 @@ for a public bot may need to include additional disclosures about controller
 identity, lawful basis for processing, retention periods, international transfers,
 request procedures, regulator contacts, or local representative information,
 depending on the laws that apply.
+
+Because the operator is based in Sweden and the bot is available globally,
+Swedish and EU data-protection rules may apply, and other jurisdictions may
+impose additional requirements. This document does not establish that the bot
+complies with every country's law.
 
 **TODO — jurisdiction-specific privacy terms:** Determine and add any legally
 required disclosures about the operator/controller identity, legal bases,
@@ -363,8 +416,12 @@ or its data practices change. The effective date at the top should be revised
 for material changes. The operator should also review this document when a host
 provider, feature set, moderation workflow, or retention practice changes.
 
-Continued use of the bot after a revision is published is a sign that the user
-accepts the updated terms to the extent permitted by applicable law.
+Material policy changes are announced publicly in the configured announcement
+channel and published at the policy links. Policy announcements are informational
+and do not by themselves establish consent or change the legal basis for
+processing. Where consent or another legally required notice is necessary, the
+operator must use the process required by applicable law; policy changes are not
+sent by DM.
 
 ## 15. Contact and further questions
 
